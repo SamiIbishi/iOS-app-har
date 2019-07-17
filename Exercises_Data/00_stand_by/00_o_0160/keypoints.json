@@ -1,0 +1,1 @@
+{"config":{"architecture":"ResNet50","inputResolution":801,"outputStride":32,"multiplier":1,"quantBytes":4}}
