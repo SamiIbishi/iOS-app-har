@@ -3,12 +3,10 @@
 import os
 import json
 import numpy as np
-from matplotlib import pyplot as plt
-from keras.preprocessing import sequence
 from datetime import datetime
 from constants import allowed_parts, full_basePath, full_exercises, target_labels
 from collections import OrderedDict
-from auxilary_functions import * 
+from auxilary_functions import get_label_vector_by_id
 
 #########################################################
 ########### SEQUENCE LOADER #############################
