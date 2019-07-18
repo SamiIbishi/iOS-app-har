@@ -8,45 +8,15 @@ from keras.preprocessing import sequence
 from datetime import datetime
 from constants import allowed_parts, full_basePath, full_exercises, target_labels
 from collections import OrderedDict
-
-#############################################################################################################################################################
-########### Full data preprocessing #########################################################################################################################
-#############################################################################################################################################################
-
-#########################################################
-########### Auxilary methods ############################
-#########################################################
-
-def time_stamp():
-  return datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
-
-def get_label_vector_by_id(exercise_id):
-  return target_labels.get(exercise_id, 0)
-
-# Sample pose for padding 
-diveder_X = 1
-diveder_Y = 1
-sample_pose = [423.0/diveder_X, 128.0/diveder_Y, 
-               436.0/diveder_X, 138.0/diveder_Y, 
-               415.0/diveder_X, 137.0/diveder_Y, 
-               440.0/diveder_X, 152.0/diveder_Y, 
-               411.0/diveder_X, 149.0/diveder_Y, 
-               440.0/diveder_X, 162.0/diveder_Y, 
-               408.0/diveder_X, 162.0/diveder_Y, 
-               428.0/diveder_X, 166.0/diveder_Y, 
-               416.0/diveder_X, 166.0/diveder_Y, 
-               425.0/diveder_X, 185.0/diveder_Y, 
-               417.0/diveder_X, 185.0/diveder_Y, 
-               422.0/diveder_X, 205.0/diveder_Y, 
-               421.0/diveder_X, 205.0/diveder_Y]
+from auxilary_functions import * 
 
 #########################################################
 ########### SEQUENCE LOADER #############################
 #########################################################
 
-def extraxt_full_information_from_data(data, single=False):
+def extraxt_sequences_from_data(data, single=False):
   # [images, pose] - List of list which contain all poses of one exercise sequence
-  sequences = [] # size/length: (numOfAllImagesInOneExercise, numOfBodyparts=24)
+  sequence = [] # size/length: (numOfAllImagesInOneExercise, numOfBodyparts=24)
 
   # Extract label
   label = get_label_vector_by_id(next(iter(data.keys())).split('_')[0])
@@ -63,52 +33,113 @@ def extraxt_full_information_from_data(data, single=False):
 
     # Add new bodypose/skeleton to seuquence list
     if bodyparts:
-      sequences.append(bodyparts)
+      sequence.append(bodyparts)
 
-  return sequences, label
+  return sequence, label
 
 #########################################################
 ########### DATA LOADER #################################
 #########################################################
 
-def load_all_data(num_poses):
+def load_and_store_data(num_poses=90, sample_equal_dist=True, store_data=True, path = './', X_filename_prefix='X_data_90p', y_filename_prefix='y_data_90p'):
   list_of_trainings_data = []
   list_of_labels = []
 
   for exercise in full_exercises:
-
+    # get all paths 
     exPath = full_basePath + exercise
     paths = [x[0] for x in os.walk(exPath) if exPath != x[0] and not 'Videos' in x[0]]
     
     for videoPath in paths:
       path = videoPath + '/keypoints_single.json'
-      
+
+      # get the "cleared" keypoints_single json file if it exist
       if os.path.isfile(path) is True:
         with open(path) as f:
           data = json.load(f, object_pairs_hook=OrderedDict)
           if data:
-            sequences, label = extraxt_full_information_from_data(data=data, single=True)
-            list_of_trainings_data.append(sequences)
-            list_of_labels.append(label)
+            sequence, label = extraxt_sequences_from_data(data=data, single=True)
+            
+            if len(sequence) >= 30:
+              list_of_trainings_data.append(sequence)
+              list_of_labels.append(label)
+
+      # get keypoint files which can include multiple skeletons/poses per frame
+      # we select always the first pose for each frame (problamtic: could be the wrong one)
       elif os.path.isfile(videoPath + '/keypoints.json'):
         with open(videoPath + '/keypoints.json') as f:
           data = json.load(f, object_pairs_hook=OrderedDict)
           del data['config']
           if data:
-            sequences, label = extraxt_full_information_from_data(data=data)
-            list_of_trainings_data.append(sequences)
-            list_of_labels.append(label)
+            sequence, label = extraxt_sequences_from_data(data=data)
 
-  # Sequence have different amount of timestamps -> post zero padding 
-  full_padded_sequences = sequence.pad_sequences(list_of_trainings_data, maxlen=90, padding='pre', truncating='pre', value=sample_pose)
-  #print('Full sequences: ' + str(len(full_padded_sequences)))
+            # drop all sequence which are shorter than 15 poses 
+            if len(sequence) >= 30:
+              list_of_trainings_data.append(sequence)
+              list_of_labels.append(label)
+
+  # equyalize length of each sequence and convert them to numpy arrays 
+  list_of_arr_of_trainings_data = []
+  for sequence in list_of_trainings_data:
+    # get once the sequence length
+    seq_len = len(sequence)
+
+    if seq_len > num_poses:
+      if sample_equal_dist:
+        # get index of num_poses evenly spaced out elements from sequence
+        # https://stackoverflow.com/questions/50685409/select-n-evenly-spaced-out-elements-in-array-including-first-and-last
+        idx = np.round(np.linspace(0, seq_len-1, num_poses)).astype(int)
+        list_of_arr_of_trainings_data.append(np.array(sequence)[idx])
+      else:
+        # current sequence in list is replaced by sequence consisting 
+        # with only the last 90 poses of the original sequence 
+        list_of_arr_of_trainings_data.append(np.array(sequence)[-90:])  
+    elif seq_len < num_poses:
+      pre_missing_len = num_poses - seq_len
+      # replicate the first element n-times
+      temp = np.array(sequence[0])
+      pre_arr = np.tile(temp, (pre_missing_len, 1))
+      # insert application in front of the existing sequence such that sequnce length is equal to num_poses
+      list_of_arr_of_trainings_data.append(np.array(np.concatenate((pre_arr, sequence))))
+    else:
+      # sequence has already the target length
+      list_of_arr_of_trainings_data.append(np.array(sequence))
+  
+  X_data = np.array(list_of_arr_of_trainings_data)
+  y_data = np.array(list_of_labels)
+
+  print(X_data.shape)
+  if store_data:
+    np.save(X_filename_prefix + '.npy', X_data)
+    np.save(y_filename_prefix + '.npy', y_data)
 
   # Convert list of trainings data to numpy array 
-  trainings_data = np.asarray(full_padded_sequences, dtype=float)
+  #trainings_data = np.asarray(full_padded_sequences, dtype=float)
   #print('Trainings data: ' + str(trainings_data.shape))
 
   # Convert list of trainings data to numpy array
-  label_data = np.asarray(list_of_labels)
+  #label_data = np.asarray(list_of_labels)
   #print('Label data: ' + str(label_data.shape))
 
-  return trainings_data, label_data
+  #return X_data, y_data
+
+def load_stored_data(dir_path='./stored_data/', num_poses="90"):
+  full_X_path = dir_path + 'X_data_' + num_poses + 'p.npy'
+  full_y_path = dir_path + 'y_data_' + num_poses + 'p.npy'
+  
+  if 90:
+    return np.load(full_X_path), np.load(full_y_path)
+  elif 75:
+    return np.load(full_X_path), np.load(full_y_path)
+  elif 60:
+    return np.load(full_X_path), np.load(full_y_path)
+  elif 45:
+    return np.load(full_X_path), np.load(full_y_path)
+  elif 30:
+    return np.load(full_X_path), np.load(full_y_path)
+  elif 15:
+    return np.load(full_X_path), np.load(full_y_path)
+  elif 10:
+    return np.load(full_X_path), np.load(full_y_path)
+  elif 5:
+    return np.load(full_X_path), np.load(full_y_path)
