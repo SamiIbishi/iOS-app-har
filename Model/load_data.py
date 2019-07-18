@@ -91,7 +91,7 @@ def load_and_store_data(num_poses=90, sample_equal_dist=True, store_data=True, p
       else:
         # current sequence in list is replaced by sequence consisting 
         # with only the last 90 poses of the original sequence 
-        list_of_arr_of_trainings_data.append(np.array(sequence)[-90:])  
+        list_of_arr_of_trainings_data.append(np.array(sequence)[-num_poses:])  
     elif seq_len < num_poses:
       pre_missing_len = num_poses - seq_len
       # replicate the first element n-times
