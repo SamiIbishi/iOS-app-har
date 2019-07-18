@@ -39,7 +39,7 @@ def plot_trainings_data(trainings_data, label_data, sample=0, sequence_length=90
   plt.xlim((0,image_width))
   plt.ylim((image_height,0))
 
-  for n in range(0, sequence_length-1):
+  for n in range(0, trainings_data.shape[1]-1):
       pose = {
         'nose': (trainings_data[sample][n][0], trainings_data[sample][n][1]),
         'leftShoulder': (trainings_data[sample][n][2], trainings_data[sample][n][3]),
@@ -80,7 +80,7 @@ def plot_test_data(test_data, predicted_label_data, label_data, sample=0, sequen
   plt.xlim((0,image_width))
   plt.ylim((image_height,0))
 
-  for n in range(0, sequence_length-1):
+  for n in range(0, test_data.shape[1]nce_length-1):
     pose = {
       'nose': (test_data[sample][n][0], test_data[sample][n][1]),
       'leftShoulder': (test_data[sample][n][2], test_data[sample][n][3]),

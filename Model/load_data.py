@@ -126,20 +126,6 @@ def load_and_store_data(num_poses=90, sample_equal_dist=True, store_data=True, p
 def load_stored_data(dir_path='./stored_data/', num_poses="90"):
   full_X_path = dir_path + 'X_data_' + num_poses + 'p.npy'
   full_y_path = dir_path + 'y_data_' + num_poses + 'p.npy'
+    
+  return np.load(full_X_path), np.load(full_y_path)
   
-  if 90:
-    return np.load(full_X_path), np.load(full_y_path)
-  elif 75:
-    return np.load(full_X_path), np.load(full_y_path)
-  elif 60:
-    return np.load(full_X_path), np.load(full_y_path)
-  elif 45:
-    return np.load(full_X_path), np.load(full_y_path)
-  elif 30:
-    return np.load(full_X_path), np.load(full_y_path)
-  elif 15:
-    return np.load(full_X_path), np.load(full_y_path)
-  elif 10:
-    return np.load(full_X_path), np.load(full_y_path)
-  elif 5:
-    return np.load(full_X_path), np.load(full_y_path)
