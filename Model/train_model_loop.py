@@ -76,11 +76,11 @@ for fps in fps_array:
     X_raw, y_raw = load_stored_data(dir_path=data_path, num_poses=fps)
 
     # Augment data
-    X, y, range_mean, range_std, data_augmentation = standardize_data(X_raw, y_raw)
+    X, y, _, _, _ = standardize_data(X_raw, y_raw)
     #X, y = normalize_data(X_raw, y_raw)
 
     # Split dataset into train and test set (and shuffle them)
-    X_train, X_test, y_train_temp, y_test_temp = train_test_split(X, y, test_size = 0.1, random_state = 42)
+    X_train, X_test, y_train_temp, y_test_temp = train_test_split(X, y, test_size = 0.1)
 
     # Classes
     num_classes = len(LABELS)
@@ -115,17 +115,17 @@ for fps in fps_array:
 
     # LSTM Neural Network's internal structure
     input_shape = (n_timesteps, n_features)
-    num_mem_units = 128
-    num_hidden_units = 128
+    num_mem_units = 256
+    num_hidden_units = 256
 
     # Training - Hyperparameter  
     learning_rate = [0.001, 0.0005, 0.0001]
     init = ['glorot_uniform', 'uniform']
-    optim = [optimizers.RMSprop(lr=learning_rate[0], decay=0.5), 
+    optim = [optimizers.RMSprop(lr=learning_rate[0], decay=1), 
                 optimizers.Adam(lr=learning_rate[0], decay=0.5),
                 optimizers.Nadam(lr=learning_rate[0])]
-    num_epochs = 32
-    batch_size = 128
+    num_epochs = 128
+    batch_size = 64
     dropout = [True, False]
 
     # Ether class weight or sample weights to overcome the unbalanced data (NOT both, select one)
@@ -137,10 +137,10 @@ for fps in fps_array:
     #########################################################
 
     # Tensorboard
-    logdir = './training_history/logs/model_selection/'
+    logdir = './training_history/logs/model_selection_3/'
 
     # Create directory which will contain trained models 
-    model_directory = './training_history/saved_models/model_selection/'
+    model_directory = './training_history/saved_models/model_selection_3/'
 
     # Generate callback list 
     callbacks = get_callbacks(model_directory, logdir, time_stamp, fps)
@@ -178,9 +178,9 @@ for fps in fps_array:
                         class_weight=class_weights)
 
     # Plot evaluation results
-    print('Used metrics: ' + str(model.metrics_names))
-    print('Evaluation on trainings data: ' + str(model.evaluate(reshaped_X_train, y_train)))
-    print('Evaluation on test data: ' + str(model.evaluate(reshaped_X_test, y_test)))
+    print('\nUsed metrics: ' + str(model.metrics_names) + '\n')
+    print('Evaluation on trainings data: ' + str(model.evaluate(reshaped_X_train, y_train)) + '\n')
+    print('Evaluation on test data: ' + str(model.evaluate(reshaped_X_test, y_test)) + '\n')
 
     str_test_acc = str(model.evaluate(reshaped_X_test, y_test)[1])
 
@@ -199,3 +199,6 @@ for fps in fps_array:
 
     # Store CoreML model 
     coreml_model.save(model_directory + "/activity_recognition_" + fps + "fps_model_" + str_test_acc + "_test_acc.mlmodel")
+
+    # Delete elemental objects (just to be sure that those are loaded new for each iteration)
+    del model, coreml_model, X_raw, y_raw

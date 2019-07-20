@@ -1,0 +1,1200 @@
+_______________________________________
+---------------------------------------
+Bsic information regardin the data:
+_______________________________________
+Trainings data...
+... input shape=(1194, 5, 26)
+... target shape=(1194, 4)
+
+Test data...
+... input shape=(133, 5, 26)
+... target shape=(133, 4)
+
+---------------------------------------
+_______________________________________
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+reshape_1 (Reshape)          (None, 5, 26)             0         
+_________________________________________________________________
+LSTM_Layer1 (LSTM)           (None, 5, 128)            79360     
+_________________________________________________________________
+LSTM_Layer2 (LSTM)           (None, 5, 128)            131584    
+_________________________________________________________________
+LSTM_Layer3 (LSTM)           (None, 128)               131584    
+_________________________________________________________________
+Feature_Layer1 (Dense)       (None, 128)               16512     
+_________________________________________________________________
+batch_normalization_1 (Batch (None, 128)               512       
+_________________________________________________________________
+activation_1 (Activation)    (None, 128)               0         
+_________________________________________________________________
+Feature_Layer2 (Dense)       (None, 128)               16512     
+_________________________________________________________________
+batch_normalization_2 (Batch (None, 128)               512       
+_________________________________________________________________
+activation_2 (Activation)    (None, 128)               0         
+_________________________________________________________________
+Output_Layer (Dense)         (None, 4)                 516       
+=================================================================
+Total params: 377,092
+Trainable params: 376,580
+Non-trainable params: 512
+_________________________________________________________________
+Train on 1074 samples, validate on 120 samples
+Epoch 1/42
+ - 6s - loss: 1.0845 - acc: 0.5959 - val_loss: 0.8764 - val_acc: 0.7167
+Epoch 2/42
+ - 1s - loss: 0.7473 - acc: 0.7905 - val_loss: 0.7935 - val_acc: 0.7500
+Epoch 3/42
+ - 1s - loss: 0.6840 - acc: 0.8017 - val_loss: 0.7468 - val_acc: 0.7750
+Epoch 4/42
+ - 1s - loss: 0.6433 - acc: 0.8138 - val_loss: 0.7170 - val_acc: 0.7667
+Epoch 5/42
+ - 1s - loss: 0.6192 - acc: 0.8380 - val_loss: 0.6957 - val_acc: 0.7833
+Epoch 6/42
+ - 1s - loss: 0.6012 - acc: 0.8361 - val_loss: 0.6776 - val_acc: 0.7750
+Epoch 7/42
+ - 1s - loss: 0.5805 - acc: 0.8566 - val_loss: 0.6632 - val_acc: 0.7833
+Epoch 8/42
+ - 1s - loss: 0.5743 - acc: 0.8529 - val_loss: 0.6516 - val_acc: 0.7833
+Epoch 9/42
+ - 1s - loss: 0.5642 - acc: 0.8501 - val_loss: 0.6381 - val_acc: 0.8083
+Epoch 10/42
+ - 1s - loss: 0.5555 - acc: 0.8557 - val_loss: 0.6301 - val_acc: 0.8333
+Epoch 11/42
+ - 1s - loss: 0.5440 - acc: 0.8547 - val_loss: 0.6211 - val_acc: 0.8333
+Epoch 12/42
+ - 1s - loss: 0.5356 - acc: 0.8706 - val_loss: 0.6142 - val_acc: 0.8417
+Epoch 13/42
+ - 1s - loss: 0.5290 - acc: 0.8641 - val_loss: 0.6061 - val_acc: 0.8417
+Epoch 14/42
+ - 1s - loss: 0.5223 - acc: 0.8724 - val_loss: 0.6009 - val_acc: 0.8417
+Epoch 15/42
+ - 1s - loss: 0.5179 - acc: 0.8771 - val_loss: 0.5959 - val_acc: 0.8333
+Epoch 16/42
+ - 1s - loss: 0.5086 - acc: 0.8743 - val_loss: 0.5894 - val_acc: 0.8333
+Epoch 17/42
+ - 1s - loss: 0.5195 - acc: 0.8706 - val_loss: 0.5848 - val_acc: 0.8333
+Epoch 18/42
+ - 1s - loss: 0.5051 - acc: 0.8827 - val_loss: 0.5798 - val_acc: 0.8417
+Epoch 19/42
+ - 1s - loss: 0.4968 - acc: 0.8873 - val_loss: 0.5754 - val_acc: 0.8417
+Epoch 20/42
+ - 1s - loss: 0.4969 - acc: 0.8771 - val_loss: 0.5717 - val_acc: 0.8417
+Epoch 21/42
+ - 1s - loss: 0.4890 - acc: 0.8901 - val_loss: 0.5673 - val_acc: 0.8417
+Epoch 22/42
+ - 1s - loss: 0.4888 - acc: 0.8808 - val_loss: 0.5631 - val_acc: 0.8333
+Epoch 23/42
+ - 1s - loss: 0.4881 - acc: 0.8845 - val_loss: 0.5577 - val_acc: 0.8500
+Epoch 24/42
+ - 1s - loss: 0.4810 - acc: 0.8883 - val_loss: 0.5540 - val_acc: 0.8500
+Epoch 25/42
+ - 1s - loss: 0.4798 - acc: 0.8976 - val_loss: 0.5517 - val_acc: 0.8583
+Epoch 26/42
+ - 1s - loss: 0.4784 - acc: 0.8957 - val_loss: 0.5494 - val_acc: 0.8417
+Epoch 27/42
+ - 1s - loss: 0.4703 - acc: 0.8957 - val_loss: 0.5465 - val_acc: 0.8500
+Epoch 28/42
+ - 1s - loss: 0.4696 - acc: 0.8948 - val_loss: 0.5432 - val_acc: 0.8500
+Epoch 29/42
+ - 1s - loss: 0.4742 - acc: 0.8985 - val_loss: 0.5407 - val_acc: 0.8500
+Epoch 30/42
+ - 1s - loss: 0.4730 - acc: 0.8827 - val_loss: 0.5387 - val_acc: 0.8500
+Epoch 31/42
+ - 1s - loss: 0.4675 - acc: 0.8985 - val_loss: 0.5354 - val_acc: 0.8500
+Epoch 32/42
+ - 1s - loss: 0.4624 - acc: 0.8966 - val_loss: 0.5331 - val_acc: 0.8500
+Epoch 33/42
+ - 1s - loss: 0.4559 - acc: 0.8948 - val_loss: 0.5313 - val_acc: 0.8500
+Epoch 34/42
+ - 1s - loss: 0.4595 - acc: 0.8985 - val_loss: 0.5288 - val_acc: 0.8417
+Epoch 35/42
+ - 1s - loss: 0.4559 - acc: 0.8948 - val_loss: 0.5260 - val_acc: 0.8417
+Epoch 36/42
+ - 1s - loss: 0.4568 - acc: 0.8883 - val_loss: 0.5239 - val_acc: 0.8417
+Epoch 37/42
+ - 1s - loss: 0.4536 - acc: 0.8957 - val_loss: 0.5215 - val_acc: 0.8417
+Epoch 38/42
+ - 1s - loss: 0.4513 - acc: 0.8994 - val_loss: 0.5191 - val_acc: 0.8417
+Epoch 39/42
+ - 1s - loss: 0.4499 - acc: 0.8939 - val_loss: 0.5176 - val_acc: 0.8417
+Epoch 40/42
+ - 1s - loss: 0.4433 - acc: 0.9004 - val_loss: 0.5160 - val_acc: 0.8417
+Epoch 41/42
+ - 1s - loss: 0.4483 - acc: 0.8976 - val_loss: 0.5143 - val_acc: 0.8417
+Epoch 42/42
+ - 1s - loss: 0.4431 - acc: 0.8929 - val_loss: 0.5119 - val_acc: 0.8417
+
+Used metrics: ['loss', 'acc']
+  32/1194 [..............................] - ETA: 0s 192/1194 [===>..........................] - ETA: 0s 352/1194 [=======>......................] - ETA: 0s 512/1194 [===========>..................] - ETA: 0s 672/1194 [===============>..............] - ETA: 0s 832/1194 [===================>..........] - ETA: 0s 992/1194 [=======================>......] - ETA: 0s1152/1194 [===========================>..] - ETA: 0s1194/1194 [==============================] - 0s 352us/step
+Evaluation on trainings data: [0.44814252653713005, 0.8986599663993222]
+
+ 32/133 [======>.......................] - ETA: 0s133/133 [==============================] - 0s 399us/step
+Evaluation on test data: [0.513104616251207, 0.8721804515759748]
+
+ 32/133 [======>.......................] - ETA: 0s133/133 [==============================] - 0s 391us/step
+0 : reshape_1_input, <keras.engine.input_layer.InputLayer object at 0x7fcddbc9ac18>
+1 : reshape_1, <keras.layers.core.Reshape object at 0x7fcddbc9abe0>
+2 : LSTM_Layer1, <keras.layers.recurrent.LSTM object at 0x7fcddbc9ac50>
+3 : LSTM_Layer2, <keras.layers.recurrent.LSTM object at 0x7fcddbc9d550>
+4 : LSTM_Layer3, <keras.layers.recurrent.LSTM object at 0x7fcddbc9ad30>
+5 : Feature_Layer1, <keras.layers.core.Dense object at 0x7fcddbdda940>
+6 : batch_normalization_1, <keras.layers.normalization.BatchNormalization object at 0x7fcde0357be0>
+7 : activation_1, <keras.layers.core.Activation object at 0x7fcddbe42fd0>
+8 : Feature_Layer2, <keras.layers.core.Dense object at 0x7fcddbb896a0>
+9 : batch_normalization_2, <keras.layers.normalization.BatchNormalization object at 0x7fcddbbccd68>
+10 : activation_2, <keras.layers.core.Activation object at 0x7fcde0357b70>
+11 : Output_Layer, <keras.layers.core.Dense object at 0x7fcd58ec83c8>
+12 : Output_Layer__activation__, <keras.layers.core.Activation object at 0x7fcde1d056a0>
+_______________________________________
+---------------------------------------
+Bsic information regardin the data:
+_______________________________________
+Trainings data...
+... input shape=(1194, 10, 26)
+... target shape=(1194, 4)
+
+Test data...
+... input shape=(133, 10, 26)
+... target shape=(133, 4)
+
+---------------------------------------
+_______________________________________
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+reshape_2 (Reshape)          (None, 10, 26)            0         
+_________________________________________________________________
+LSTM_Layer1 (LSTM)           (None, 10, 128)           79360     
+_________________________________________________________________
+LSTM_Layer2 (LSTM)           (None, 10, 128)           131584    
+_________________________________________________________________
+LSTM_Layer3 (LSTM)           (None, 128)               131584    
+_________________________________________________________________
+Feature_Layer1 (Dense)       (None, 128)               16512     
+_________________________________________________________________
+batch_normalization_3 (Batch (None, 128)               512       
+_________________________________________________________________
+activation_4 (Activation)    (None, 128)               0         
+_________________________________________________________________
+Feature_Layer2 (Dense)       (None, 128)               16512     
+_________________________________________________________________
+batch_normalization_4 (Batch (None, 128)               512       
+_________________________________________________________________
+activation_5 (Activation)    (None, 128)               0         
+_________________________________________________________________
+Output_Layer (Dense)         (None, 4)                 516       
+=================================================================
+Total params: 377,092
+Trainable params: 376,580
+Non-trainable params: 512
+_________________________________________________________________
+Train on 1074 samples, validate on 120 samples
+Epoch 1/42
+ - 6s - loss: 1.1334 - acc: 0.5791 - val_loss: 0.6899 - val_acc: 0.8000
+Epoch 2/42
+ - 1s - loss: 0.6798 - acc: 0.7700 - val_loss: 0.5882 - val_acc: 0.8833
+Epoch 3/42
+ - 1s - loss: 0.5758 - acc: 0.8361 - val_loss: 0.5494 - val_acc: 0.9250
+Epoch 4/42
+ - 1s - loss: 0.5319 - acc: 0.8669 - val_loss: 0.5207 - val_acc: 0.8917
+Epoch 5/42
+ - 1s - loss: 0.4982 - acc: 0.8743 - val_loss: 0.4956 - val_acc: 0.9250
+Epoch 6/42
+ - 1s - loss: 0.4843 - acc: 0.8845 - val_loss: 0.4828 - val_acc: 0.9333
+Epoch 7/42
+ - 1s - loss: 0.4660 - acc: 0.9013 - val_loss: 0.4649 - val_acc: 0.9167
+Epoch 8/42
+ - 1s - loss: 0.4410 - acc: 0.9069 - val_loss: 0.4530 - val_acc: 0.9250
+Epoch 9/42
+ - 1s - loss: 0.4276 - acc: 0.9143 - val_loss: 0.4427 - val_acc: 0.9250
+Epoch 10/42
+ - 1s - loss: 0.4207 - acc: 0.9153 - val_loss: 0.4347 - val_acc: 0.9333
+Epoch 11/42
+ - 1s - loss: 0.4003 - acc: 0.9255 - val_loss: 0.4243 - val_acc: 0.9333
+Epoch 12/42
+ - 1s - loss: 0.3972 - acc: 0.9274 - val_loss: 0.4186 - val_acc: 0.9333
+Epoch 13/42
+ - 1s - loss: 0.3888 - acc: 0.9236 - val_loss: 0.4117 - val_acc: 0.9417
+Epoch 14/42
+ - 1s - loss: 0.3765 - acc: 0.9376 - val_loss: 0.4076 - val_acc: 0.9250
+Epoch 15/42
+ - 1s - loss: 0.3856 - acc: 0.9199 - val_loss: 0.4029 - val_acc: 0.9250
+Epoch 16/42
+ - 1s - loss: 0.3735 - acc: 0.9330 - val_loss: 0.3974 - val_acc: 0.9250
+Epoch 17/42
+ - 1s - loss: 0.3752 - acc: 0.9264 - val_loss: 0.3930 - val_acc: 0.9250
+Epoch 18/42
+ - 1s - loss: 0.3605 - acc: 0.9358 - val_loss: 0.3887 - val_acc: 0.9250
+Epoch 19/42
+ - 1s - loss: 0.3632 - acc: 0.9302 - val_loss: 0.3849 - val_acc: 0.9333
+Epoch 20/42
+ - 1s - loss: 0.3518 - acc: 0.9432 - val_loss: 0.3811 - val_acc: 0.9333
+Epoch 21/42
+ - 1s - loss: 0.3484 - acc: 0.9404 - val_loss: 0.3773 - val_acc: 0.9333
+Epoch 22/42
+ - 1s - loss: 0.3511 - acc: 0.9367 - val_loss: 0.3728 - val_acc: 0.9333
+Epoch 23/42
+ - 1s - loss: 0.3467 - acc: 0.9441 - val_loss: 0.3692 - val_acc: 0.9333
+Epoch 24/42
+ - 1s - loss: 0.3455 - acc: 0.9367 - val_loss: 0.3680 - val_acc: 0.9333
+Epoch 25/42
+ - 1s - loss: 0.3356 - acc: 0.9460 - val_loss: 0.3651 - val_acc: 0.9333
+Epoch 26/42
+ - 1s - loss: 0.3347 - acc: 0.9460 - val_loss: 0.3626 - val_acc: 0.9333
+Epoch 27/42
+ - 1s - loss: 0.3314 - acc: 0.9451 - val_loss: 0.3602 - val_acc: 0.9333
+Epoch 28/42
+ - 1s - loss: 0.3348 - acc: 0.9460 - val_loss: 0.3576 - val_acc: 0.9333
+Epoch 29/42
+ - 1s - loss: 0.3272 - acc: 0.9441 - val_loss: 0.3550 - val_acc: 0.9333
+Epoch 30/42
+ - 1s - loss: 0.3267 - acc: 0.9413 - val_loss: 0.3530 - val_acc: 0.9333
+Epoch 31/42
+ - 1s - loss: 0.3280 - acc: 0.9432 - val_loss: 0.3514 - val_acc: 0.9333
+Epoch 32/42
+ - 1s - loss: 0.3217 - acc: 0.9441 - val_loss: 0.3495 - val_acc: 0.9333
+Epoch 33/42
+ - 1s - loss: 0.3139 - acc: 0.9413 - val_loss: 0.3472 - val_acc: 0.9333
+Epoch 34/42
+ - 1s - loss: 0.3205 - acc: 0.9451 - val_loss: 0.3449 - val_acc: 0.9333
+Epoch 35/42
+ - 1s - loss: 0.3136 - acc: 0.9507 - val_loss: 0.3437 - val_acc: 0.9333
+Epoch 36/42
+ - 1s - loss: 0.3183 - acc: 0.9432 - val_loss: 0.3409 - val_acc: 0.9333
+Epoch 37/42
+ - 1s - loss: 0.3157 - acc: 0.9488 - val_loss: 0.3394 - val_acc: 0.9333
+Epoch 38/42
+ - 1s - loss: 0.3133 - acc: 0.9441 - val_loss: 0.3383 - val_acc: 0.9333
+Epoch 39/42
+ - 1s - loss: 0.3113 - acc: 0.9488 - val_loss: 0.3370 - val_acc: 0.9333
+Epoch 40/42
+ - 1s - loss: 0.3072 - acc: 0.9534 - val_loss: 0.3357 - val_acc: 0.9333
+Epoch 41/42
+ - 1s - loss: 0.3063 - acc: 0.9441 - val_loss: 0.3336 - val_acc: 0.9333
+Epoch 42/42
+ - 1s - loss: 0.3108 - acc: 0.9404 - val_loss: 0.3321 - val_acc: 0.9333
+
+Used metrics: ['loss', 'acc']
+  32/1194 [..............................] - ETA: 0s 128/1194 [==>...........................] - ETA: 0s 224/1194 [====>.........................] - ETA: 0s 352/1194 [=======>......................] - ETA: 0s 448/1194 [==========>...................] - ETA: 0s 576/1194 [=============>................] - ETA: 0s 672/1194 [===============>..............] - ETA: 0s 768/1194 [==================>...........] - ETA: 0s 896/1194 [=====================>........] - ETA: 0s 992/1194 [=======================>......] - ETA: 0s1088/1194 [==========================>...] - ETA: 0s1184/1194 [============================>.] - ETA: 0s1194/1194 [==============================] - 1s 531us/step
+Evaluation on trainings data: [0.3010639889256239, 0.9572864319611235]
+
+ 32/133 [======>.......................] - ETA: 0s128/133 [===========================>..] - ETA: 0s133/133 [==============================] - 0s 596us/step
+Evaluation on test data: [0.33896779823572115, 0.9323308270676691]
+
+ 32/133 [======>.......................] - ETA: 0s133/133 [==============================] - 0s 590us/step
+0 : reshape_2_input, <keras.engine.input_layer.InputLayer object at 0x7fcd48aebcf8>
+1 : reshape_2, <keras.layers.core.Reshape object at 0x7fcd48aebcc0>
+2 : LSTM_Layer1, <keras.layers.recurrent.LSTM object at 0x7fcd48aebd30>
+3 : LSTM_Layer2, <keras.layers.recurrent.LSTM object at 0x7fcd48ae96d8>
+4 : LSTM_Layer3, <keras.layers.recurrent.LSTM object at 0x7fcd48aebe10>
+5 : Feature_Layer1, <keras.layers.core.Dense object at 0x7fcd49539828>
+6 : batch_normalization_3, <keras.layers.normalization.BatchNormalization object at 0x7fcd49382908>
+7 : activation_4, <keras.layers.core.Activation object at 0x7fcd494af8d0>
+8 : Feature_Layer2, <keras.layers.core.Dense object at 0x7fcd494af6a0>
+9 : batch_normalization_4, <keras.layers.normalization.BatchNormalization object at 0x7fcd48c76e48>
+10 : activation_5, <keras.layers.core.Activation object at 0x7fcd492c1c18>
+11 : Output_Layer, <keras.layers.core.Dense object at 0x7fcd48bc1828>
+12 : Output_Layer__activation__, <keras.layers.core.Activation object at 0x7fcd48bedc88>
+_______________________________________
+---------------------------------------
+Bsic information regardin the data:
+_______________________________________
+Trainings data...
+... input shape=(1194, 15, 26)
+... target shape=(1194, 4)
+
+Test data...
+... input shape=(133, 15, 26)
+... target shape=(133, 4)
+
+---------------------------------------
+_______________________________________
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+reshape_3 (Reshape)          (None, 15, 26)            0         
+_________________________________________________________________
+LSTM_Layer1 (LSTM)           (None, 15, 128)           79360     
+_________________________________________________________________
+LSTM_Layer2 (LSTM)           (None, 15, 128)           131584    
+_________________________________________________________________
+LSTM_Layer3 (LSTM)           (None, 128)               131584    
+_________________________________________________________________
+Feature_Layer1 (Dense)       (None, 128)               16512     
+_________________________________________________________________
+batch_normalization_5 (Batch (None, 128)               512       
+_________________________________________________________________
+activation_7 (Activation)    (None, 128)               0         
+_________________________________________________________________
+Feature_Layer2 (Dense)       (None, 128)               16512     
+_________________________________________________________________
+batch_normalization_6 (Batch (None, 128)               512       
+_________________________________________________________________
+activation_8 (Activation)    (None, 128)               0         
+_________________________________________________________________
+Output_Layer (Dense)         (None, 4)                 516       
+=================================================================
+Total params: 377,092
+Trainable params: 376,580
+Non-trainable params: 512
+_________________________________________________________________
+Train on 1074 samples, validate on 120 samples
+Epoch 1/42
+ - 8s - loss: 0.9055 - acc: 0.6601 - val_loss: 0.5949 - val_acc: 0.8167
+Epoch 2/42
+ - 1s - loss: 0.5614 - acc: 0.8240 - val_loss: 0.5167 - val_acc: 0.8417
+Epoch 3/42
+ - 1s - loss: 0.4911 - acc: 0.8669 - val_loss: 0.4817 - val_acc: 0.8667
+Epoch 4/42
+ - 1s - loss: 0.4579 - acc: 0.8734 - val_loss: 0.4566 - val_acc: 0.8833
+Epoch 5/42
+ - 1s - loss: 0.4292 - acc: 0.8929 - val_loss: 0.4250 - val_acc: 0.9000
+Epoch 6/42
+ - 1s - loss: 0.4076 - acc: 0.8948 - val_loss: 0.4086 - val_acc: 0.9167
+Epoch 7/42
+ - 1s - loss: 0.3913 - acc: 0.8994 - val_loss: 0.3984 - val_acc: 0.9167
+Epoch 8/42
+ - 1s - loss: 0.3785 - acc: 0.9078 - val_loss: 0.3841 - val_acc: 0.9250
+Epoch 9/42
+ - 1s - loss: 0.3702 - acc: 0.8994 - val_loss: 0.3736 - val_acc: 0.9250
+Epoch 10/42
+ - 1s - loss: 0.3572 - acc: 0.9060 - val_loss: 0.3666 - val_acc: 0.9250
+Epoch 11/42
+ - 1s - loss: 0.3509 - acc: 0.9125 - val_loss: 0.3594 - val_acc: 0.9333
+Epoch 12/42
+ - 1s - loss: 0.3446 - acc: 0.9236 - val_loss: 0.3505 - val_acc: 0.9333
+Epoch 13/42
+ - 1s - loss: 0.3430 - acc: 0.9134 - val_loss: 0.3438 - val_acc: 0.9333
+Epoch 14/42
+ - 1s - loss: 0.3277 - acc: 0.9218 - val_loss: 0.3377 - val_acc: 0.9333
+Epoch 15/42
+ - 1s - loss: 0.3225 - acc: 0.9292 - val_loss: 0.3306 - val_acc: 0.9333
+Epoch 16/42
+ - 1s - loss: 0.3234 - acc: 0.9209 - val_loss: 0.3260 - val_acc: 0.9333
+Epoch 17/42
+ - 1s - loss: 0.3167 - acc: 0.9302 - val_loss: 0.3235 - val_acc: 0.9333
+Epoch 18/42
+ - 1s - loss: 0.3100 - acc: 0.9264 - val_loss: 0.3209 - val_acc: 0.9333
+Epoch 19/42
+ - 1s - loss: 0.3050 - acc: 0.9367 - val_loss: 0.3161 - val_acc: 0.9333
+Epoch 20/42
+ - 1s - loss: 0.3048 - acc: 0.9358 - val_loss: 0.3093 - val_acc: 0.9333
+Epoch 21/42
+ - 1s - loss: 0.3026 - acc: 0.9302 - val_loss: 0.3042 - val_acc: 0.9333
+Epoch 22/42
+ - 1s - loss: 0.2992 - acc: 0.9320 - val_loss: 0.3018 - val_acc: 0.9333
+Epoch 23/42
+ - 1s - loss: 0.2970 - acc: 0.9367 - val_loss: 0.2972 - val_acc: 0.9333
+Epoch 24/42
+ - 1s - loss: 0.2900 - acc: 0.9376 - val_loss: 0.2942 - val_acc: 0.9333
+Epoch 25/42
+ - 1s - loss: 0.2863 - acc: 0.9339 - val_loss: 0.2930 - val_acc: 0.9333
+Epoch 26/42
+ - 1s - loss: 0.2833 - acc: 0.9385 - val_loss: 0.2901 - val_acc: 0.9333
+Epoch 27/42
+ - 1s - loss: 0.2862 - acc: 0.9404 - val_loss: 0.2883 - val_acc: 0.9417
+Epoch 28/42
+ - 2s - loss: 0.2857 - acc: 0.9367 - val_loss: 0.2847 - val_acc: 0.9417
+Epoch 29/42
+ - 2s - loss: 0.2843 - acc: 0.9385 - val_loss: 0.2828 - val_acc: 0.9417
+Epoch 30/42
+ - 2s - loss: 0.2763 - acc: 0.9423 - val_loss: 0.2803 - val_acc: 0.9417
+Epoch 31/42
+ - 2s - loss: 0.2772 - acc: 0.9441 - val_loss: 0.2786 - val_acc: 0.9417
+Epoch 32/42
+ - 2s - loss: 0.2750 - acc: 0.9460 - val_loss: 0.2768 - val_acc: 0.9417
+Epoch 33/42
+ - 2s - loss: 0.2783 - acc: 0.9376 - val_loss: 0.2750 - val_acc: 0.9417
+Epoch 34/42
+ - 1s - loss: 0.2743 - acc: 0.9395 - val_loss: 0.2728 - val_acc: 0.9417
+Epoch 35/42
+ - 1s - loss: 0.2671 - acc: 0.9404 - val_loss: 0.2713 - val_acc: 0.9417
+Epoch 36/42
+ - 1s - loss: 0.2667 - acc: 0.9423 - val_loss: 0.2696 - val_acc: 0.9417
+Epoch 37/42
+ - 1s - loss: 0.2725 - acc: 0.9385 - val_loss: 0.2680 - val_acc: 0.9417
+Epoch 38/42
+ - 1s - loss: 0.2648 - acc: 0.9348 - val_loss: 0.2652 - val_acc: 0.9500
+Epoch 39/42
+ - 1s - loss: 0.2706 - acc: 0.9479 - val_loss: 0.2629 - val_acc: 0.9500
+Epoch 40/42
+ - 1s - loss: 0.2636 - acc: 0.9441 - val_loss: 0.2620 - val_acc: 0.9500
+Epoch 41/42
+ - 1s - loss: 0.2697 - acc: 0.9488 - val_loss: 0.2606 - val_acc: 0.9500
+Epoch 42/42
+ - 1s - loss: 0.2581 - acc: 0.9469 - val_loss: 0.2592 - val_acc: 0.9500
+
+Used metrics: ['loss', 'acc']
+  32/1194 [..............................] - ETA: 0s 128/1194 [==>...........................] - ETA: 0s 224/1194 [====>.........................] - ETA: 0s 320/1194 [=======>......................] - ETA: 0s 416/1194 [=========>....................] - ETA: 0s 512/1194 [===========>..................] - ETA: 0s 608/1194 [==============>...............] - ETA: 0s 704/1194 [================>.............] - ETA: 0s 800/1194 [===================>..........] - ETA: 0s 896/1194 [=====================>........] - ETA: 0s 992/1194 [=======================>......] - ETA: 0s1088/1194 [==========================>...] - ETA: 0s1184/1194 [============================>.] - ETA: 0s1194/1194 [==============================] - 1s 762us/step
+Evaluation on trainings data: [0.2557879599993752, 0.9547738693467337]
+
+ 32/133 [======>.......................] - ETA: 0s128/133 [===========================>..] - ETA: 0s133/133 [==============================] - 0s 852us/step
+Evaluation on test data: [0.2763245680502483, 0.9323308270676691]
+
+ 32/133 [======>.......................] - ETA: 0s128/133 [===========================>..] - ETA: 0s133/133 [==============================] - 0s 853us/step
+0 : reshape_3_input, <keras.engine.input_layer.InputLayer object at 0x7fcd172cccf8>
+1 : reshape_3, <keras.layers.core.Reshape object at 0x7fcd172cccc0>
+2 : LSTM_Layer1, <keras.layers.recurrent.LSTM object at 0x7fcd172ccd30>
+3 : LSTM_Layer2, <keras.layers.recurrent.LSTM object at 0x7fcd172c96d8>
+4 : LSTM_Layer3, <keras.layers.recurrent.LSTM object at 0x7fcd172cce10>
+5 : Feature_Layer1, <keras.layers.core.Dense object at 0x7fcd170d4828>
+6 : batch_normalization_5, <keras.layers.normalization.BatchNormalization object at 0x7fcd16a1f908>
+7 : activation_7, <keras.layers.core.Activation object at 0x7fcd16893e48>
+8 : Feature_Layer2, <keras.layers.core.Dense object at 0x7fcd174458d0>
+9 : batch_normalization_6, <keras.layers.normalization.BatchNormalization object at 0x7fcd168b6ef0>
+10 : activation_8, <keras.layers.core.Activation object at 0x7fcd17389748>
+11 : Output_Layer, <keras.layers.core.Dense object at 0x7fcd17245550>
+12 : Output_Layer__activation__, <keras.layers.core.Activation object at 0x7fcd1fd36b70>
+_______________________________________
+---------------------------------------
+Bsic information regardin the data:
+_______________________________________
+Trainings data...
+... input shape=(1194, 30, 26)
+... target shape=(1194, 4)
+
+Test data...
+... input shape=(133, 30, 26)
+... target shape=(133, 4)
+
+---------------------------------------
+_______________________________________
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+reshape_4 (Reshape)          (None, 30, 26)            0         
+_________________________________________________________________
+LSTM_Layer1 (LSTM)           (None, 30, 128)           79360     
+_________________________________________________________________
+LSTM_Layer2 (LSTM)           (None, 30, 128)           131584    
+_________________________________________________________________
+LSTM_Layer3 (LSTM)           (None, 128)               131584    
+_________________________________________________________________
+Feature_Layer1 (Dense)       (None, 128)               16512     
+_________________________________________________________________
+batch_normalization_7 (Batch (None, 128)               512       
+_________________________________________________________________
+activation_10 (Activation)   (None, 128)               0         
+_________________________________________________________________
+Feature_Layer2 (Dense)       (None, 128)               16512     
+_________________________________________________________________
+batch_normalization_8 (Batch (None, 128)               512       
+_________________________________________________________________
+activation_11 (Activation)   (None, 128)               0         
+_________________________________________________________________
+Output_Layer (Dense)         (None, 4)                 516       
+=================================================================
+Total params: 377,092
+Trainable params: 376,580
+Non-trainable params: 512
+_________________________________________________________________
+Train on 1074 samples, validate on 120 samples
+Epoch 1/42
+ - 10s - loss: 0.7809 - acc: 0.7020 - val_loss: 0.4676 - val_acc: 0.8833
+Epoch 2/42
+ - 3s - loss: 0.4163 - acc: 0.8994 - val_loss: 0.3988 - val_acc: 0.9250
+Epoch 3/42
+ - 3s - loss: 0.3443 - acc: 0.9153 - val_loss: 0.3717 - val_acc: 0.9167
+Epoch 4/42
+ - 3s - loss: 0.3170 - acc: 0.9283 - val_loss: 0.3522 - val_acc: 0.9333
+Epoch 5/42
+ - 3s - loss: 0.2926 - acc: 0.9395 - val_loss: 0.3368 - val_acc: 0.9333
+Epoch 6/42
+ - 3s - loss: 0.2819 - acc: 0.9348 - val_loss: 0.3225 - val_acc: 0.9250
+Epoch 7/42
+ - 3s - loss: 0.2636 - acc: 0.9451 - val_loss: 0.3150 - val_acc: 0.9333
+Epoch 8/42
+ - 3s - loss: 0.2521 - acc: 0.9497 - val_loss: 0.3080 - val_acc: 0.9250
+Epoch 9/42
+ - 3s - loss: 0.2526 - acc: 0.9488 - val_loss: 0.2996 - val_acc: 0.9250
+Epoch 10/42
+ - 3s - loss: 0.2357 - acc: 0.9488 - val_loss: 0.2921 - val_acc: 0.9250
+Epoch 11/42
+ - 3s - loss: 0.2326 - acc: 0.9525 - val_loss: 0.2867 - val_acc: 0.9250
+Epoch 12/42
+ - 3s - loss: 0.2285 - acc: 0.9544 - val_loss: 0.2821 - val_acc: 0.9250
+Epoch 13/42
+ - 3s - loss: 0.2216 - acc: 0.9581 - val_loss: 0.2759 - val_acc: 0.9250
+Epoch 14/42
+ - 3s - loss: 0.2137 - acc: 0.9581 - val_loss: 0.2727 - val_acc: 0.9250
+Epoch 15/42
+ - 3s - loss: 0.2099 - acc: 0.9562 - val_loss: 0.2666 - val_acc: 0.9250
+Epoch 16/42
+ - 3s - loss: 0.2045 - acc: 0.9600 - val_loss: 0.2627 - val_acc: 0.9250
+Epoch 17/42
+ - 3s - loss: 0.2032 - acc: 0.9590 - val_loss: 0.2592 - val_acc: 0.9250
+Epoch 18/42
+ - 3s - loss: 0.1969 - acc: 0.9572 - val_loss: 0.2572 - val_acc: 0.9250
+Epoch 19/42
+ - 3s - loss: 0.1999 - acc: 0.9590 - val_loss: 0.2553 - val_acc: 0.9250
+Epoch 20/42
+ - 3s - loss: 0.1981 - acc: 0.9600 - val_loss: 0.2518 - val_acc: 0.9250
+Epoch 21/42
+ - 3s - loss: 0.1915 - acc: 0.9590 - val_loss: 0.2476 - val_acc: 0.9250
+Epoch 22/42
+ - 3s - loss: 0.1898 - acc: 0.9637 - val_loss: 0.2452 - val_acc: 0.9333
+Epoch 23/42
+ - 3s - loss: 0.1852 - acc: 0.9646 - val_loss: 0.2412 - val_acc: 0.9333
+Epoch 24/42
+ - 3s - loss: 0.1834 - acc: 0.9637 - val_loss: 0.2392 - val_acc: 0.9417
+Epoch 25/42
+ - 3s - loss: 0.1863 - acc: 0.9628 - val_loss: 0.2377 - val_acc: 0.9333
+Epoch 26/42
+ - 3s - loss: 0.1845 - acc: 0.9628 - val_loss: 0.2351 - val_acc: 0.9333
+Epoch 27/42
+ - 3s - loss: 0.1818 - acc: 0.9618 - val_loss: 0.2331 - val_acc: 0.9417
+Epoch 28/42
+ - 3s - loss: 0.1802 - acc: 0.9618 - val_loss: 0.2319 - val_acc: 0.9417
+Epoch 29/42
+ - 3s - loss: 0.1772 - acc: 0.9655 - val_loss: 0.2296 - val_acc: 0.9417
+Epoch 30/42
+ - 3s - loss: 0.1754 - acc: 0.9637 - val_loss: 0.2294 - val_acc: 0.9417
+Epoch 31/42
+ - 3s - loss: 0.1764 - acc: 0.9637 - val_loss: 0.2263 - val_acc: 0.9417
+Epoch 32/42
+ - 3s - loss: 0.1699 - acc: 0.9665 - val_loss: 0.2249 - val_acc: 0.9417
+Epoch 33/42
+ - 3s - loss: 0.1747 - acc: 0.9674 - val_loss: 0.2232 - val_acc: 0.9417
+Epoch 34/42
+ - 3s - loss: 0.1701 - acc: 0.9693 - val_loss: 0.2219 - val_acc: 0.9417
+Epoch 35/42
+ - 3s - loss: 0.1679 - acc: 0.9702 - val_loss: 0.2205 - val_acc: 0.9417
+Epoch 36/42
+ - 3s - loss: 0.1638 - acc: 0.9711 - val_loss: 0.2193 - val_acc: 0.9417
+Epoch 37/42
+ - 3s - loss: 0.1654 - acc: 0.9683 - val_loss: 0.2178 - val_acc: 0.9417
+Epoch 38/42
+ - 3s - loss: 0.1634 - acc: 0.9721 - val_loss: 0.2164 - val_acc: 0.9417
+Epoch 39/42
+ - 3s - loss: 0.1671 - acc: 0.9665 - val_loss: 0.2149 - val_acc: 0.9417
+Epoch 40/42
+ - 3s - loss: 0.1638 - acc: 0.9711 - val_loss: 0.2136 - val_acc: 0.9417
+Epoch 41/42
+ - 3s - loss: 0.1692 - acc: 0.9637 - val_loss: 0.2121 - val_acc: 0.9417
+Epoch 42/42
+ - 3s - loss: 0.1606 - acc: 0.9711 - val_loss: 0.2106 - val_acc: 0.9417
+
+Used metrics: ['loss', 'acc']
+  32/1194 [..............................] - ETA: 1s  96/1194 [=>............................] - ETA: 1s 160/1194 [===>..........................] - ETA: 1s 224/1194 [====>.........................] - ETA: 1s 288/1194 [======>.......................] - ETA: 1s 352/1194 [=======>......................] - ETA: 1s 416/1194 [=========>....................] - ETA: 1s 480/1194 [===========>..................] - ETA: 0s 544/1194 [============>.................] - ETA: 0s 608/1194 [==============>...............] - ETA: 0s 672/1194 [===============>..............] - ETA: 0s 736/1194 [=================>............] - ETA: 0s 800/1194 [===================>..........] - ETA: 0s 864/1194 [====================>.........] - ETA: 0s 928/1194 [======================>.......] - ETA: 0s 992/1194 [=======================>......] - ETA: 0s1056/1194 [=========================>....] - ETA: 0s1120/1194 [===========================>..] - ETA: 0s1184/1194 [============================>.] - ETA: 0s1194/1194 [==============================] - 2s 1ms/step
+Evaluation on trainings data: [0.16261383254623893, 0.9706867671691792]
+
+ 32/133 [======>.......................] - ETA: 0s 96/133 [====================>.........] - ETA: 0s133/133 [==============================] - 0s 2ms/step
+Evaluation on test data: [0.2836580352675646, 0.9323308275158244]
+
+ 32/133 [======>.......................] - ETA: 0s 96/133 [====================>.........] - ETA: 0s133/133 [==============================] - 0s 2ms/step
+0 : reshape_4_input, <keras.engine.input_layer.InputLayer object at 0x7fcd0eb49cf8>
+1 : reshape_4, <keras.layers.core.Reshape object at 0x7fcd0eb49cc0>
+2 : LSTM_Layer1, <keras.layers.recurrent.LSTM object at 0x7fcd0eb49d30>
+3 : LSTM_Layer2, <keras.layers.recurrent.LSTM object at 0x7fcd0eb476d8>
+4 : LSTM_Layer3, <keras.layers.recurrent.LSTM object at 0x7fcd0eb49e10>
+5 : Feature_Layer1, <keras.layers.core.Dense object at 0x7fcd0ec59828>
+6 : batch_normalization_7, <keras.layers.normalization.BatchNormalization object at 0x7fcd0e520908>
+7 : activation_10, <keras.layers.core.Activation object at 0x7fcd0e4d0e48>
+8 : Feature_Layer2, <keras.layers.core.Dense object at 0x7fcd0ed548d0>
+9 : batch_normalization_8, <keras.layers.normalization.BatchNormalization object at 0x7fcd0e4f6ef0>
+10 : activation_11, <keras.layers.core.Activation object at 0x7fcd0ed91748>
+11 : Output_Layer, <keras.layers.core.Dense object at 0x7fcd0e615550>
+12 : Output_Layer__activation__, <keras.layers.core.Activation object at 0x7fcd0efe63c8>
+_______________________________________
+---------------------------------------
+Bsic information regardin the data:
+_______________________________________
+Trainings data...
+... input shape=(1194, 45, 26)
+... target shape=(1194, 4)
+
+Test data...
+... input shape=(133, 45, 26)
+... target shape=(133, 4)
+
+---------------------------------------
+_______________________________________
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+reshape_5 (Reshape)          (None, 45, 26)            0         
+_________________________________________________________________
+LSTM_Layer1 (LSTM)           (None, 45, 128)           79360     
+_________________________________________________________________
+LSTM_Layer2 (LSTM)           (None, 45, 128)           131584    
+_________________________________________________________________
+LSTM_Layer3 (LSTM)           (None, 128)               131584    
+_________________________________________________________________
+Feature_Layer1 (Dense)       (None, 128)               16512     
+_________________________________________________________________
+batch_normalization_9 (Batch (None, 128)               512       
+_________________________________________________________________
+activation_13 (Activation)   (None, 128)               0         
+_________________________________________________________________
+Feature_Layer2 (Dense)       (None, 128)               16512     
+_________________________________________________________________
+batch_normalization_10 (Batc (None, 128)               512       
+_________________________________________________________________
+activation_14 (Activation)   (None, 128)               0         
+_________________________________________________________________
+Output_Layer (Dense)         (None, 4)                 516       
+=================================================================
+Total params: 377,092
+Trainable params: 376,580
+Non-trainable params: 512
+_________________________________________________________________
+Train on 1074 samples, validate on 120 samples
+Epoch 1/42
+ - 12s - loss: 0.9480 - acc: 0.6266 - val_loss: 0.6248 - val_acc: 0.8000
+Epoch 2/42
+ - 4s - loss: 0.5019 - acc: 0.8613 - val_loss: 0.5035 - val_acc: 0.8667
+Epoch 3/42
+ - 4s - loss: 0.4210 - acc: 0.8901 - val_loss: 0.4474 - val_acc: 0.8667
+Epoch 4/42
+ - 4s - loss: 0.3943 - acc: 0.8976 - val_loss: 0.4105 - val_acc: 0.9083
+Epoch 5/42
+ - 4s - loss: 0.3579 - acc: 0.9078 - val_loss: 0.3828 - val_acc: 0.9250
+Epoch 6/42
+ - 4s - loss: 0.3370 - acc: 0.9162 - val_loss: 0.3590 - val_acc: 0.9333
+Epoch 7/42
+ - 4s - loss: 0.3320 - acc: 0.9162 - val_loss: 0.3451 - val_acc: 0.9333
+Epoch 8/42
+ - 4s - loss: 0.3104 - acc: 0.9209 - val_loss: 0.3332 - val_acc: 0.9417
+Epoch 9/42
+ - 4s - loss: 0.3101 - acc: 0.9246 - val_loss: 0.3231 - val_acc: 0.9333
+Epoch 10/42
+ - 4s - loss: 0.3008 - acc: 0.9283 - val_loss: 0.3162 - val_acc: 0.9417
+Epoch 11/42
+ - 4s - loss: 0.2865 - acc: 0.9292 - val_loss: 0.3078 - val_acc: 0.9417
+Epoch 12/42
+ - 4s - loss: 0.2875 - acc: 0.9302 - val_loss: 0.2997 - val_acc: 0.9417
+Epoch 13/42
+ - 4s - loss: 0.2778 - acc: 0.9320 - val_loss: 0.2934 - val_acc: 0.9417
+Epoch 14/42
+ - 4s - loss: 0.2735 - acc: 0.9320 - val_loss: 0.2871 - val_acc: 0.9417
+Epoch 15/42
+ - 4s - loss: 0.2768 - acc: 0.9302 - val_loss: 0.2813 - val_acc: 0.9333
+Epoch 16/42
+ - 5s - loss: 0.2642 - acc: 0.9385 - val_loss: 0.2758 - val_acc: 0.9417
+Epoch 17/42
+ - 5s - loss: 0.2627 - acc: 0.9423 - val_loss: 0.2720 - val_acc: 0.9417
+Epoch 18/42
+ - 5s - loss: 0.2634 - acc: 0.9302 - val_loss: 0.2674 - val_acc: 0.9333
+Epoch 19/42
+ - 4s - loss: 0.2521 - acc: 0.9413 - val_loss: 0.2648 - val_acc: 0.9333
+Epoch 20/42
+ - 4s - loss: 0.2512 - acc: 0.9404 - val_loss: 0.2607 - val_acc: 0.9417
+Epoch 21/42
+ - 4s - loss: 0.2481 - acc: 0.9432 - val_loss: 0.2580 - val_acc: 0.9417
+Epoch 22/42
+ - 4s - loss: 0.2501 - acc: 0.9395 - val_loss: 0.2556 - val_acc: 0.9417
+Epoch 23/42
+ - 4s - loss: 0.2488 - acc: 0.9460 - val_loss: 0.2527 - val_acc: 0.9417
+Epoch 24/42
+ - 4s - loss: 0.2433 - acc: 0.9423 - val_loss: 0.2496 - val_acc: 0.9417
+Epoch 25/42
+ - 4s - loss: 0.2423 - acc: 0.9479 - val_loss: 0.2475 - val_acc: 0.9333
+Epoch 26/42
+ - 4s - loss: 0.2379 - acc: 0.9525 - val_loss: 0.2448 - val_acc: 0.9333
+Epoch 27/42
+ - 4s - loss: 0.2397 - acc: 0.9413 - val_loss: 0.2416 - val_acc: 0.9333
+Epoch 28/42
+ - 4s - loss: 0.2329 - acc: 0.9460 - val_loss: 0.2399 - val_acc: 0.9417
+Epoch 29/42
+ - 4s - loss: 0.2390 - acc: 0.9441 - val_loss: 0.2382 - val_acc: 0.9417
+Epoch 30/42
+ - 4s - loss: 0.2366 - acc: 0.9358 - val_loss: 0.2361 - val_acc: 0.9417
+Epoch 31/42
+ - 4s - loss: 0.2282 - acc: 0.9460 - val_loss: 0.2332 - val_acc: 0.9417
+Epoch 32/42
+ - 4s - loss: 0.2267 - acc: 0.9479 - val_loss: 0.2313 - val_acc: 0.9417
+Epoch 33/42
+ - 4s - loss: 0.2334 - acc: 0.9413 - val_loss: 0.2296 - val_acc: 0.9417
+Epoch 34/42
+ - 4s - loss: 0.2228 - acc: 0.9479 - val_loss: 0.2278 - val_acc: 0.9417
+Epoch 35/42
+ - 4s - loss: 0.2246 - acc: 0.9497 - val_loss: 0.2266 - val_acc: 0.9417
+Epoch 36/42
+ - 4s - loss: 0.2184 - acc: 0.9488 - val_loss: 0.2253 - val_acc: 0.9417
+Epoch 37/42
+ - 4s - loss: 0.2275 - acc: 0.9441 - val_loss: 0.2234 - val_acc: 0.9417
+Epoch 38/42
+ - 4s - loss: 0.2186 - acc: 0.9525 - val_loss: 0.2219 - val_acc: 0.9417
+Epoch 39/42
+ - 4s - loss: 0.2231 - acc: 0.9441 - val_loss: 0.2209 - val_acc: 0.9417
+Epoch 40/42
+ - 4s - loss: 0.2199 - acc: 0.9432 - val_loss: 0.2192 - val_acc: 0.9417
+Epoch 41/42
+ - 4s - loss: 0.2137 - acc: 0.9525 - val_loss: 0.2180 - val_acc: 0.9500
+Epoch 42/42
+ - 4s - loss: 0.2129 - acc: 0.9562 - val_loss: 0.2163 - val_acc: 0.9500
+
+Used metrics: ['loss', 'acc']
+  32/1194 [..............................] - ETA: 2s  64/1194 [>.............................] - ETA: 2s  96/1194 [=>............................] - ETA: 2s 128/1194 [==>...........................] - ETA: 2s 160/1194 [===>..........................] - ETA: 2s 192/1194 [===>..........................] - ETA: 2s 224/1194 [====>.........................] - ETA: 1s 256/1194 [=====>........................] - ETA: 1s 288/1194 [======>.......................] - ETA: 1s 320/1194 [=======>......................] - ETA: 1s 352/1194 [=======>......................] - ETA: 1s 384/1194 [========>.....................] - ETA: 1s 416/1194 [=========>....................] - ETA: 1s 448/1194 [==========>...................] - ETA: 1s 480/1194 [===========>..................] - ETA: 1s 512/1194 [===========>..................] - ETA: 1s 544/1194 [============>.................] - ETA: 1s 576/1194 [=============>................] - ETA: 1s 608/1194 [==============>...............] - ETA: 1s 640/1194 [===============>..............] - ETA: 1s 672/1194 [===============>..............] - ETA: 1s 704/1194 [================>.............] - ETA: 1s 736/1194 [=================>............] - ETA: 0s 768/1194 [==================>...........] - ETA: 0s 800/1194 [===================>..........] - ETA: 0s 832/1194 [===================>..........] - ETA: 0s 864/1194 [====================>.........] - ETA: 0s 896/1194 [=====================>........] - ETA: 0s 928/1194 [======================>.......] - ETA: 0s 960/1194 [=======================>......] - ETA: 0s 992/1194 [=======================>......] - ETA: 0s1024/1194 [========================>.....] - ETA: 0s1056/1194 [=========================>....] - ETA: 0s1088/1194 [==========================>...] - ETA: 0s1120/1194 [===========================>..] - ETA: 0s1152/1194 [===========================>..] - ETA: 0s1184/1194 [============================>.] - ETA: 0s1194/1194 [==============================] - 2s 2ms/step
+Evaluation on trainings data: [0.20861485048853973, 0.9522613065326633]
+
+ 32/133 [======>.......................] - ETA: 0s 64/133 [=============>................] - ETA: 0s 96/133 [====================>.........] - ETA: 0s128/133 [===========================>..] - ETA: 0s133/133 [==============================] - 0s 2ms/step
+Evaluation on test data: [0.31891838791675137, 0.917293233530862]
+
+ 32/133 [======>.......................] - ETA: 0s 64/133 [=============>................] - ETA: 0s 96/133 [====================>.........] - ETA: 0s128/133 [===========================>..] - ETA: 0s133/133 [==============================] - 0s 2ms/step
+0 : reshape_5_input, <keras.engine.input_layer.InputLayer object at 0x7fccfe5e7cf8>
+1 : reshape_5, <keras.layers.core.Reshape object at 0x7fccfe5e7cc0>
+2 : LSTM_Layer1, <keras.layers.recurrent.LSTM object at 0x7fccfe5e7d30>
+3 : LSTM_Layer2, <keras.layers.recurrent.LSTM object at 0x7fccfe5eb6d8>
+4 : LSTM_Layer3, <keras.layers.recurrent.LSTM object at 0x7fccfe5e7e10>
+5 : Feature_Layer1, <keras.layers.core.Dense object at 0x7fccfddac828>
+6 : batch_normalization_9, <keras.layers.normalization.BatchNormalization object at 0x7fccfdf41908>
+7 : activation_13, <keras.layers.core.Activation object at 0x7fccfe473e48>
+8 : Feature_Layer2, <keras.layers.core.Dense object at 0x7fccfe96f8d0>
+9 : batch_normalization_10, <keras.layers.normalization.BatchNormalization object at 0x7fccfe315ef0>
+10 : activation_14, <keras.layers.core.Activation object at 0x7fccfe8af748>
+11 : Output_Layer, <keras.layers.core.Dense object at 0x7fccfe56c550>
+12 : Output_Layer__activation__, <keras.layers.core.Activation object at 0x7fccfdd443c8>
+_______________________________________
+---------------------------------------
+Bsic information regardin the data:
+_______________________________________
+Trainings data...
+... input shape=(1194, 60, 26)
+... target shape=(1194, 4)
+
+Test data...
+... input shape=(133, 60, 26)
+... target shape=(133, 4)
+
+---------------------------------------
+_______________________________________
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+reshape_6 (Reshape)          (None, 60, 26)            0         
+_________________________________________________________________
+LSTM_Layer1 (LSTM)           (None, 60, 128)           79360     
+_________________________________________________________________
+LSTM_Layer2 (LSTM)           (None, 60, 128)           131584    
+_________________________________________________________________
+LSTM_Layer3 (LSTM)           (None, 128)               131584    
+_________________________________________________________________
+Feature_Layer1 (Dense)       (None, 128)               16512     
+_________________________________________________________________
+batch_normalization_11 (Batc (None, 128)               512       
+_________________________________________________________________
+activation_16 (Activation)   (None, 128)               0         
+_________________________________________________________________
+Feature_Layer2 (Dense)       (None, 128)               16512     
+_________________________________________________________________
+batch_normalization_12 (Batc (None, 128)               512       
+_________________________________________________________________
+activation_17 (Activation)   (None, 128)               0         
+_________________________________________________________________
+Output_Layer (Dense)         (None, 4)                 516       
+=================================================================
+Total params: 377,092
+Trainable params: 376,580
+Non-trainable params: 512
+_________________________________________________________________
+Train on 1074 samples, validate on 120 samples
+Epoch 1/42
+ - 14s - loss: 0.6959 - acc: 0.7393 - val_loss: 0.3993 - val_acc: 0.9083
+Epoch 2/42
+ - 6s - loss: 0.4296 - acc: 0.8827 - val_loss: 0.3830 - val_acc: 0.9250
+Epoch 3/42
+ - 6s - loss: 0.3746 - acc: 0.8976 - val_loss: 0.3658 - val_acc: 0.9333
+Epoch 4/42
+ - 6s - loss: 0.3534 - acc: 0.8976 - val_loss: 0.3488 - val_acc: 0.9333
+Epoch 5/42
+ - 6s - loss: 0.3345 - acc: 0.9143 - val_loss: 0.3397 - val_acc: 0.9417
+Epoch 6/42
+ - 6s - loss: 0.3239 - acc: 0.9162 - val_loss: 0.3340 - val_acc: 0.9417
+Epoch 7/42
+ - 6s - loss: 0.3161 - acc: 0.9190 - val_loss: 0.3303 - val_acc: 0.9333
+Epoch 8/42
+ - 6s - loss: 0.2961 - acc: 0.9227 - val_loss: 0.3244 - val_acc: 0.9333
+Epoch 9/42
+ - 6s - loss: 0.3034 - acc: 0.9246 - val_loss: 0.3198 - val_acc: 0.9333
+Epoch 10/42
+ - 6s - loss: 0.2853 - acc: 0.9246 - val_loss: 0.3143 - val_acc: 0.9333
+Epoch 11/42
+ - 6s - loss: 0.2790 - acc: 0.9358 - val_loss: 0.3122 - val_acc: 0.9333
+Epoch 12/42
+ - 6s - loss: 0.2768 - acc: 0.9330 - val_loss: 0.3081 - val_acc: 0.9333
+Epoch 13/42
+ - 6s - loss: 0.2680 - acc: 0.9348 - val_loss: 0.3054 - val_acc: 0.9333
+Epoch 14/42
+ - 6s - loss: 0.2644 - acc: 0.9367 - val_loss: 0.3015 - val_acc: 0.9333
+Epoch 15/42
+ - 6s - loss: 0.2565 - acc: 0.9320 - val_loss: 0.2987 - val_acc: 0.9333
+Epoch 16/42
+ - 6s - loss: 0.2561 - acc: 0.9385 - val_loss: 0.2964 - val_acc: 0.9333
+Epoch 17/42
+ - 6s - loss: 0.2602 - acc: 0.9358 - val_loss: 0.2949 - val_acc: 0.9333
+Epoch 18/42
+ - 6s - loss: 0.2612 - acc: 0.9376 - val_loss: 0.2919 - val_acc: 0.9333
+Epoch 19/42
+ - 6s - loss: 0.2568 - acc: 0.9404 - val_loss: 0.2886 - val_acc: 0.9417
+Epoch 20/42
+ - 6s - loss: 0.2466 - acc: 0.9441 - val_loss: 0.2867 - val_acc: 0.9500
+Epoch 21/42
+ - 6s - loss: 0.2442 - acc: 0.9423 - val_loss: 0.2840 - val_acc: 0.9417
+Epoch 22/42
+ - 6s - loss: 0.2388 - acc: 0.9507 - val_loss: 0.2820 - val_acc: 0.9500
+Epoch 23/42
+ - 6s - loss: 0.2377 - acc: 0.9451 - val_loss: 0.2808 - val_acc: 0.9500
+Epoch 24/42
+ - 6s - loss: 0.2350 - acc: 0.9469 - val_loss: 0.2794 - val_acc: 0.9500
+Epoch 25/42
+ - 6s - loss: 0.2375 - acc: 0.9423 - val_loss: 0.2779 - val_acc: 0.9417
+Epoch 26/42
+ - 6s - loss: 0.2360 - acc: 0.9469 - val_loss: 0.2762 - val_acc: 0.9417
+Epoch 27/42
+ - 6s - loss: 0.2305 - acc: 0.9460 - val_loss: 0.2752 - val_acc: 0.9417
+Epoch 28/42
+ - 6s - loss: 0.2328 - acc: 0.9497 - val_loss: 0.2742 - val_acc: 0.9500
+Epoch 29/42
+ - 6s - loss: 0.2303 - acc: 0.9423 - val_loss: 0.2724 - val_acc: 0.9417
+Epoch 30/42
+ - 6s - loss: 0.2298 - acc: 0.9451 - val_loss: 0.2708 - val_acc: 0.9500
+Epoch 31/42
+ - 6s - loss: 0.2342 - acc: 0.9469 - val_loss: 0.2700 - val_acc: 0.9500
+Epoch 32/42
+ - 6s - loss: 0.2233 - acc: 0.9497 - val_loss: 0.2689 - val_acc: 0.9500
+Epoch 33/42
+ - 6s - loss: 0.2238 - acc: 0.9497 - val_loss: 0.2681 - val_acc: 0.9500
+Epoch 34/42
+ - 6s - loss: 0.2275 - acc: 0.9479 - val_loss: 0.2668 - val_acc: 0.9500
+Epoch 35/42
+ - 6s - loss: 0.2258 - acc: 0.9479 - val_loss: 0.2657 - val_acc: 0.9500
+Epoch 36/42
+ - 6s - loss: 0.2202 - acc: 0.9451 - val_loss: 0.2647 - val_acc: 0.9500
+Epoch 37/42
+ - 7s - loss: 0.2161 - acc: 0.9516 - val_loss: 0.2633 - val_acc: 0.9500
+Epoch 38/42
+ - 6s - loss: 0.2210 - acc: 0.9488 - val_loss: 0.2620 - val_acc: 0.9500
+Epoch 39/42
+ - 6s - loss: 0.2153 - acc: 0.9479 - val_loss: 0.2614 - val_acc: 0.9500
+Epoch 40/42
+ - 6s - loss: 0.2131 - acc: 0.9497 - val_loss: 0.2604 - val_acc: 0.9500
+Epoch 41/42
+ - 6s - loss: 0.2123 - acc: 0.9534 - val_loss: 0.2592 - val_acc: 0.9500
+Epoch 42/42
+ - 6s - loss: 0.2132 - acc: 0.9479 - val_loss: 0.2586 - val_acc: 0.9500
+
+Used metrics: ['loss', 'acc']
+  32/1194 [..............................] - ETA: 3s  64/1194 [>.............................] - ETA: 3s  96/1194 [=>............................] - ETA: 3s 128/1194 [==>...........................] - ETA: 2s 160/1194 [===>..........................] - ETA: 2s 192/1194 [===>..........................] - ETA: 2s 224/1194 [====>.........................] - ETA: 2s 256/1194 [=====>........................] - ETA: 2s 288/1194 [======>.......................] - ETA: 2s 320/1194 [=======>......................] - ETA: 2s 352/1194 [=======>......................] - ETA: 2s 384/1194 [========>.....................] - ETA: 2s 416/1194 [=========>....................] - ETA: 2s 448/1194 [==========>...................] - ETA: 2s 480/1194 [===========>..................] - ETA: 1s 512/1194 [===========>..................] - ETA: 1s 544/1194 [============>.................] - ETA: 1s 576/1194 [=============>................] - ETA: 1s 608/1194 [==============>...............] - ETA: 1s 640/1194 [===============>..............] - ETA: 1s 672/1194 [===============>..............] - ETA: 1s 704/1194 [================>.............] - ETA: 1s 736/1194 [=================>............] - ETA: 1s 768/1194 [==================>...........] - ETA: 1s 800/1194 [===================>..........] - ETA: 1s 832/1194 [===================>..........] - ETA: 0s 864/1194 [====================>.........] - ETA: 0s 896/1194 [=====================>........] - ETA: 0s 928/1194 [======================>.......] - ETA: 0s 960/1194 [=======================>......] - ETA: 0s 992/1194 [=======================>......] - ETA: 0s1024/1194 [========================>.....] - ETA: 0s1056/1194 [=========================>....] - ETA: 0s1088/1194 [==========================>...] - ETA: 0s1120/1194 [===========================>..] - ETA: 0s1152/1194 [===========================>..] - ETA: 0s1184/1194 [============================>.] - ETA: 0s1194/1194 [==============================] - 3s 3ms/step
+Evaluation on trainings data: [0.21144751927361416, 0.9522613063329828]
+
+ 32/133 [======>.......................] - ETA: 0s 64/133 [=============>................] - ETA: 0s 96/133 [====================>.........] - ETA: 0s128/133 [===========================>..] - ETA: 0s133/133 [==============================] - 0s 3ms/step
+Evaluation on test data: [0.27797054975552665, 0.9398496245083056]
+
+ 32/133 [======>.......................] - ETA: 0s 64/133 [=============>................] - ETA: 0s 96/133 [====================>.........] - ETA: 0s128/133 [===========================>..] - ETA: 0s133/133 [==============================] - 0s 3ms/step
+0 : reshape_6_input, <keras.engine.input_layer.InputLayer object at 0x7fccea0eacf8>
+1 : reshape_6, <keras.layers.core.Reshape object at 0x7fccea0eacc0>
+2 : LSTM_Layer1, <keras.layers.recurrent.LSTM object at 0x7fccea0ead30>
+3 : LSTM_Layer2, <keras.layers.recurrent.LSTM object at 0x7fccea0ed6d8>
+4 : LSTM_Layer3, <keras.layers.recurrent.LSTM object at 0x7fccea0eae10>
+5 : Feature_Layer1, <keras.layers.core.Dense object at 0x7fccea2b7828>
+6 : batch_normalization_11, <keras.layers.normalization.BatchNormalization object at 0x7fcce9982908>
+7 : activation_16, <keras.layers.core.Activation object at 0x7fcce9979e48>
+8 : Feature_Layer2, <keras.layers.core.Dense object at 0x7fccea3f88d0>
+9 : batch_normalization_12, <keras.layers.normalization.BatchNormalization object at 0x7fcce989aef0>
+10 : activation_17, <keras.layers.core.Activation object at 0x7fccea1fa748>
+11 : Output_Layer, <keras.layers.core.Dense object at 0x7fcce9ef8550>
+12 : Output_Layer__activation__, <keras.layers.core.Activation object at 0x7fcce99fa940>
+_______________________________________
+---------------------------------------
+Bsic information regardin the data:
+_______________________________________
+Trainings data...
+... input shape=(1194, 75, 26)
+... target shape=(1194, 4)
+
+Test data...
+... input shape=(133, 75, 26)
+... target shape=(133, 4)
+
+---------------------------------------
+_______________________________________
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+reshape_7 (Reshape)          (None, 75, 26)            0         
+_________________________________________________________________
+LSTM_Layer1 (LSTM)           (None, 75, 128)           79360     
+_________________________________________________________________
+LSTM_Layer2 (LSTM)           (None, 75, 128)           131584    
+_________________________________________________________________
+LSTM_Layer3 (LSTM)           (None, 128)               131584    
+_________________________________________________________________
+Feature_Layer1 (Dense)       (None, 128)               16512     
+_________________________________________________________________
+batch_normalization_13 (Batc (None, 128)               512       
+_________________________________________________________________
+activation_19 (Activation)   (None, 128)               0         
+_________________________________________________________________
+Feature_Layer2 (Dense)       (None, 128)               16512     
+_________________________________________________________________
+batch_normalization_14 (Batc (None, 128)               512       
+_________________________________________________________________
+activation_20 (Activation)   (None, 128)               0         
+_________________________________________________________________
+Output_Layer (Dense)         (None, 4)                 516       
+=================================================================
+Total params: 377,092
+Trainable params: 376,580
+Non-trainable params: 512
+_________________________________________________________________
+Train on 1074 samples, validate on 120 samples
+Epoch 1/42
+ - 16s - loss: 0.8310 - acc: 0.6769 - val_loss: 0.5519 - val_acc: 0.8250
+Epoch 2/42
+ - 7s - loss: 0.5091 - acc: 0.8389 - val_loss: 0.4931 - val_acc: 0.8500
+Epoch 3/42
+ - 7s - loss: 0.4528 - acc: 0.8529 - val_loss: 0.4526 - val_acc: 0.8583
+Epoch 4/42
+ - 7s - loss: 0.4136 - acc: 0.8715 - val_loss: 0.4303 - val_acc: 0.8583
+Epoch 5/42
+ - 7s - loss: 0.3959 - acc: 0.8743 - val_loss: 0.4135 - val_acc: 0.8583
+Epoch 6/42
+ - 7s - loss: 0.3772 - acc: 0.8864 - val_loss: 0.3971 - val_acc: 0.8583
+Epoch 7/42
+ - 7s - loss: 0.3675 - acc: 0.8901 - val_loss: 0.3899 - val_acc: 0.8583
+Epoch 8/42
+ - 7s - loss: 0.3556 - acc: 0.8929 - val_loss: 0.3770 - val_acc: 0.8583
+Epoch 9/42
+ - 7s - loss: 0.3499 - acc: 0.9004 - val_loss: 0.3699 - val_acc: 0.8667
+Epoch 10/42
+ - 7s - loss: 0.3415 - acc: 0.9004 - val_loss: 0.3633 - val_acc: 0.8667
+Epoch 11/42
+ - 7s - loss: 0.3383 - acc: 0.9050 - val_loss: 0.3566 - val_acc: 0.8750
+Epoch 12/42
+ - 7s - loss: 0.3318 - acc: 0.9078 - val_loss: 0.3519 - val_acc: 0.8750
+Epoch 13/42
+ - 7s - loss: 0.3242 - acc: 0.9162 - val_loss: 0.3478 - val_acc: 0.8750
+Epoch 14/42
+ - 7s - loss: 0.3201 - acc: 0.9097 - val_loss: 0.3408 - val_acc: 0.8750
+Epoch 15/42
+ - 7s - loss: 0.3132 - acc: 0.9125 - val_loss: 0.3372 - val_acc: 0.8750
+Epoch 16/42
+ - 10s - loss: 0.3111 - acc: 0.9209 - val_loss: 0.3333 - val_acc: 0.8667
+Epoch 17/42
+ - 8s - loss: 0.3127 - acc: 0.9125 - val_loss: 0.3290 - val_acc: 0.8667
+Epoch 18/42
+ - 9s - loss: 0.3008 - acc: 0.9209 - val_loss: 0.3261 - val_acc: 0.8667
+Epoch 19/42
+ - 8s - loss: 0.2989 - acc: 0.9153 - val_loss: 0.3235 - val_acc: 0.8667
+Epoch 20/42
+ - 8s - loss: 0.2932 - acc: 0.9264 - val_loss: 0.3198 - val_acc: 0.8667
+Epoch 21/42
+ - 7s - loss: 0.2977 - acc: 0.9190 - val_loss: 0.3167 - val_acc: 0.8667
+Epoch 22/42
+ - 7s - loss: 0.2962 - acc: 0.9227 - val_loss: 0.3140 - val_acc: 0.8750
+Epoch 23/42
+ - 9s - loss: 0.2949 - acc: 0.9218 - val_loss: 0.3112 - val_acc: 0.8750
+Epoch 24/42
+ - 8s - loss: 0.2897 - acc: 0.9264 - val_loss: 0.3096 - val_acc: 0.8750
+Epoch 25/42
+ - 8s - loss: 0.2893 - acc: 0.9190 - val_loss: 0.3077 - val_acc: 0.8750
+Epoch 26/42
+ - 10s - loss: 0.2822 - acc: 0.9274 - val_loss: 0.3061 - val_acc: 0.8750
+Epoch 27/42
+ - 9s - loss: 0.2785 - acc: 0.9302 - val_loss: 0.3047 - val_acc: 0.8917
+Epoch 28/42
+ - 9s - loss: 0.2829 - acc: 0.9302 - val_loss: 0.3033 - val_acc: 0.8833
+Epoch 29/42
+ - 8s - loss: 0.2770 - acc: 0.9255 - val_loss: 0.3015 - val_acc: 0.8917
+Epoch 30/42
+ - 7s - loss: 0.2767 - acc: 0.9264 - val_loss: 0.3000 - val_acc: 0.8917
+Epoch 31/42
+ - 7s - loss: 0.2779 - acc: 0.9274 - val_loss: 0.2986 - val_acc: 0.8833
+Epoch 32/42
+ - 7s - loss: 0.2673 - acc: 0.9330 - val_loss: 0.2971 - val_acc: 0.8917
+Epoch 33/42
+ - 8s - loss: 0.2683 - acc: 0.9302 - val_loss: 0.2958 - val_acc: 0.8917
+Epoch 34/42
+ - 8s - loss: 0.2696 - acc: 0.9320 - val_loss: 0.2945 - val_acc: 0.9000
+Epoch 35/42
+ - 7s - loss: 0.2741 - acc: 0.9283 - val_loss: 0.2934 - val_acc: 0.9000
+Epoch 36/42
+ - 7s - loss: 0.2669 - acc: 0.9320 - val_loss: 0.2921 - val_acc: 0.9000
+Epoch 37/42
+ - 8s - loss: 0.2643 - acc: 0.9330 - val_loss: 0.2911 - val_acc: 0.9000
+Epoch 38/42
+ - 8s - loss: 0.2745 - acc: 0.9292 - val_loss: 0.2899 - val_acc: 0.9000
+Epoch 39/42
+ - 7s - loss: 0.2681 - acc: 0.9283 - val_loss: 0.2888 - val_acc: 0.9000
+Epoch 40/42
+ - 7s - loss: 0.2613 - acc: 0.9348 - val_loss: 0.2877 - val_acc: 0.9000
+Epoch 41/42
+ - 7s - loss: 0.2625 - acc: 0.9302 - val_loss: 0.2867 - val_acc: 0.9000
+Epoch 42/42
+ - 8s - loss: 0.2611 - acc: 0.9330 - val_loss: 0.2854 - val_acc: 0.9000
+
+Used metrics: ['loss', 'acc']
+  32/1194 [..............................] - ETA: 4s  64/1194 [>.............................] - ETA: 4s  96/1194 [=>............................] - ETA: 4s 128/1194 [==>...........................] - ETA: 4s 160/1194 [===>..........................] - ETA: 4s 192/1194 [===>..........................] - ETA: 4s 224/1194 [====>.........................] - ETA: 4s 256/1194 [=====>........................] - ETA: 3s 288/1194 [======>.......................] - ETA: 3s 320/1194 [=======>......................] - ETA: 3s 352/1194 [=======>......................] - ETA: 3s 384/1194 [========>.....................] - ETA: 3s 416/1194 [=========>....................] - ETA: 3s 448/1194 [==========>...................] - ETA: 3s 480/1194 [===========>..................] - ETA: 2s 512/1194 [===========>..................] - ETA: 2s 544/1194 [============>.................] - ETA: 2s 576/1194 [=============>................] - ETA: 2s 608/1194 [==============>...............] - ETA: 2s 640/1194 [===============>..............] - ETA: 2s 672/1194 [===============>..............] - ETA: 2s 704/1194 [================>.............] - ETA: 2s 736/1194 [=================>............] - ETA: 1s 768/1194 [==================>...........] - ETA: 1s 800/1194 [===================>..........] - ETA: 1s 832/1194 [===================>..........] - ETA: 1s 864/1194 [====================>.........] - ETA: 1s 896/1194 [=====================>........] - ETA: 1s 928/1194 [======================>.......] - ETA: 1s 960/1194 [=======================>......] - ETA: 0s 992/1194 [=======================>......] - ETA: 0s1024/1194 [========================>.....] - ETA: 0s1056/1194 [=========================>....] - ETA: 0s1088/1194 [==========================>...] - ETA: 0s1120/1194 [===========================>..] - ETA: 0s1152/1194 [===========================>..] - ETA: 0s1184/1194 [============================>.] - ETA: 0s1194/1194 [==============================] - 5s 4ms/step
+Evaluation on trainings data: [0.2584398753778819, 0.9304857622438939]
+
+ 32/133 [======>.......................] - ETA: 0s 64/133 [=============>................] - ETA: 0s 96/133 [====================>.........] - ETA: 0s128/133 [===========================>..] - ETA: 0s133/133 [==============================] - 1s 4ms/step
+Evaluation on test data: [0.2879633518089925, 0.954887218493268]
+
+ 32/133 [======>.......................] - ETA: 0s 64/133 [=============>................] - ETA: 0s 96/133 [====================>.........] - ETA: 0s128/133 [===========================>..] - ETA: 0s133/133 [==============================] - 1s 4ms/step
+0 : reshape_7_input, <keras.engine.input_layer.InputLayer object at 0x7fccb1a8dcf8>
+1 : reshape_7, <keras.layers.core.Reshape object at 0x7fccb1a8dcc0>
+2 : LSTM_Layer1, <keras.layers.recurrent.LSTM object at 0x7fccb1a8dd30>
+3 : LSTM_Layer2, <keras.layers.recurrent.LSTM object at 0x7fccb1a8f6d8>
+4 : LSTM_Layer3, <keras.layers.recurrent.LSTM object at 0x7fccb1a8de10>
+5 : Feature_Layer1, <keras.layers.core.Dense object at 0x7fccb19d5828>
+6 : batch_normalization_13, <keras.layers.normalization.BatchNormalization object at 0x7fccb126c908>
+7 : activation_19, <keras.layers.core.Activation object at 0x7fccb1215e48>
+8 : Feature_Layer2, <keras.layers.core.Dense object at 0x7fccb0fd58d0>
+9 : batch_normalization_14, <keras.layers.normalization.BatchNormalization object at 0x7fccb1239ef0>
+10 : activation_20, <keras.layers.core.Activation object at 0x7fccb1854748>
+11 : Output_Layer, <keras.layers.core.Dense object at 0x7fccb14d8550>
+12 : Output_Layer__activation__, <keras.layers.core.Activation object at 0x7fccfc9e1940>
+_______________________________________
+---------------------------------------
+Bsic information regardin the data:
+_______________________________________
+Trainings data...
+... input shape=(1194, 90, 26)
+... target shape=(1194, 4)
+
+Test data...
+... input shape=(133, 90, 26)
+... target shape=(133, 4)
+
+---------------------------------------
+_______________________________________
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+reshape_8 (Reshape)          (None, 90, 26)            0         
+_________________________________________________________________
+LSTM_Layer1 (LSTM)           (None, 90, 128)           79360     
+_________________________________________________________________
+LSTM_Layer2 (LSTM)           (None, 90, 128)           131584    
+_________________________________________________________________
+LSTM_Layer3 (LSTM)           (None, 128)               131584    
+_________________________________________________________________
+Feature_Layer1 (Dense)       (None, 128)               16512     
+_________________________________________________________________
+batch_normalization_15 (Batc (None, 128)               512       
+_________________________________________________________________
+activation_22 (Activation)   (None, 128)               0         
+_________________________________________________________________
+Feature_Layer2 (Dense)       (None, 128)               16512     
+_________________________________________________________________
+batch_normalization_16 (Batc (None, 128)               512       
+_________________________________________________________________
+activation_23 (Activation)   (None, 128)               0         
+_________________________________________________________________
+Output_Layer (Dense)         (None, 4)                 516       
+=================================================================
+Total params: 377,092
+Trainable params: 376,580
+Non-trainable params: 512
+_________________________________________________________________
+Train on 1074 samples, validate on 120 samples
+Epoch 1/42
+ - 19s - loss: 0.7928 - acc: 0.7142 - val_loss: 0.6348 - val_acc: 0.7833
+Epoch 2/42
+ - 9s - loss: 0.4707 - acc: 0.8696 - val_loss: 0.5597 - val_acc: 0.8333
+Epoch 3/42
+ - 8s - loss: 0.4144 - acc: 0.8790 - val_loss: 0.5279 - val_acc: 0.8250
+Epoch 4/42
+ - 8s - loss: 0.3860 - acc: 0.8901 - val_loss: 0.5125 - val_acc: 0.8333
+Epoch 5/42
+ - 9s - loss: 0.3623 - acc: 0.8957 - val_loss: 0.4922 - val_acc: 0.8417
+Epoch 6/42
+ - 9s - loss: 0.3464 - acc: 0.9022 - val_loss: 0.4784 - val_acc: 0.8417
+Epoch 7/42
+ - 9s - loss: 0.3433 - acc: 0.9078 - val_loss: 0.4649 - val_acc: 0.8583
+Epoch 8/42
+ - 9s - loss: 0.3257 - acc: 0.9106 - val_loss: 0.4573 - val_acc: 0.8583
+Epoch 9/42
+ - 9s - loss: 0.3168 - acc: 0.9134 - val_loss: 0.4474 - val_acc: 0.8583
+Epoch 10/42
+ - 9s - loss: 0.3077 - acc: 0.9115 - val_loss: 0.4412 - val_acc: 0.8583
+Epoch 11/42
+ - 9s - loss: 0.3074 - acc: 0.9171 - val_loss: 0.4352 - val_acc: 0.8583
+Epoch 12/42
+ - 9s - loss: 0.3011 - acc: 0.9143 - val_loss: 0.4310 - val_acc: 0.8583
+Epoch 13/42
+ - 9s - loss: 0.2932 - acc: 0.9236 - val_loss: 0.4249 - val_acc: 0.8583
+Epoch 14/42
+ - 9s - loss: 0.2891 - acc: 0.9199 - val_loss: 0.4216 - val_acc: 0.8583
+Epoch 15/42
+ - 9s - loss: 0.2901 - acc: 0.9190 - val_loss: 0.4185 - val_acc: 0.8583
+Epoch 16/42
+ - 9s - loss: 0.2883 - acc: 0.9190 - val_loss: 0.4148 - val_acc: 0.8583
+Epoch 17/42
+ - 9s - loss: 0.2778 - acc: 0.9255 - val_loss: 0.4103 - val_acc: 0.8583
+Epoch 18/42
+ - 9s - loss: 0.2724 - acc: 0.9255 - val_loss: 0.4073 - val_acc: 0.8583
+Epoch 19/42
+ - 10s - loss: 0.2703 - acc: 0.9283 - val_loss: 0.4041 - val_acc: 0.8583
+Epoch 20/42
+ - 9s - loss: 0.2718 - acc: 0.9218 - val_loss: 0.4011 - val_acc: 0.8583
+Epoch 21/42
+ - 9s - loss: 0.2688 - acc: 0.9320 - val_loss: 0.3976 - val_acc: 0.8583
+Epoch 22/42
+ - 9s - loss: 0.2729 - acc: 0.9236 - val_loss: 0.3955 - val_acc: 0.8583
+Epoch 23/42
+ - 9s - loss: 0.2664 - acc: 0.9264 - val_loss: 0.3929 - val_acc: 0.8583
+Epoch 24/42
+ - 9s - loss: 0.2604 - acc: 0.9302 - val_loss: 0.3901 - val_acc: 0.8583
+Epoch 25/42
+ - 9s - loss: 0.2644 - acc: 0.9218 - val_loss: 0.3886 - val_acc: 0.8583
+Epoch 26/42
+ - 9s - loss: 0.2534 - acc: 0.9292 - val_loss: 0.3872 - val_acc: 0.8583
+Epoch 27/42
+ - 9s - loss: 0.2603 - acc: 0.9330 - val_loss: 0.3848 - val_acc: 0.8583
+Epoch 28/42
+ - 9s - loss: 0.2478 - acc: 0.9320 - val_loss: 0.3835 - val_acc: 0.8583
+Epoch 29/42
+ - 9s - loss: 0.2540 - acc: 0.9283 - val_loss: 0.3817 - val_acc: 0.8583
+Epoch 30/42
+ - 9s - loss: 0.2498 - acc: 0.9274 - val_loss: 0.3795 - val_acc: 0.8583
+Epoch 31/42
+ - 9s - loss: 0.2486 - acc: 0.9320 - val_loss: 0.3769 - val_acc: 0.8583
+Epoch 32/42
+ - 9s - loss: 0.2481 - acc: 0.9311 - val_loss: 0.3755 - val_acc: 0.8583
+Epoch 33/42
+ - 9s - loss: 0.2436 - acc: 0.9367 - val_loss: 0.3743 - val_acc: 0.8583
+Epoch 34/42
+ - 9s - loss: 0.2431 - acc: 0.9367 - val_loss: 0.3732 - val_acc: 0.8583
+Epoch 35/42
+ - 9s - loss: 0.2467 - acc: 0.9339 - val_loss: 0.3709 - val_acc: 0.8667
+Epoch 36/42
+ - 10s - loss: 0.2353 - acc: 0.9367 - val_loss: 0.3701 - val_acc: 0.8667
+Epoch 37/42
+ - 9s - loss: 0.2377 - acc: 0.9367 - val_loss: 0.3686 - val_acc: 0.8667
+Epoch 38/42
+ - 9s - loss: 0.2373 - acc: 0.9367 - val_loss: 0.3663 - val_acc: 0.8667
+Epoch 39/42
+ - 9s - loss: 0.2392 - acc: 0.9376 - val_loss: 0.3647 - val_acc: 0.8667
+Epoch 40/42
+ - 9s - loss: 0.2371 - acc: 0.9339 - val_loss: 0.3628 - val_acc: 0.8667
+Epoch 41/42
+ - 9s - loss: 0.2402 - acc: 0.9264 - val_loss: 0.3615 - val_acc: 0.8667
+Epoch 42/42
+ - 9s - loss: 0.2326 - acc: 0.9367 - val_loss: 0.3606 - val_acc: 0.8667
+
+Used metrics: ['loss', 'acc']
+  32/1194 [..............................] - ETA: 4s  64/1194 [>.............................] - ETA: 4s  96/1194 [=>............................] - ETA: 4s 128/1194 [==>...........................] - ETA: 4s 160/1194 [===>..........................] - ETA: 4s 192/1194 [===>..........................] - ETA: 4s 224/1194 [====>.........................] - ETA: 4s 256/1194 [=====>........................] - ETA: 3s 288/1194 [======>.......................] - ETA: 3s 320/1194 [=======>......................] - ETA: 3s 352/1194 [=======>......................] - ETA: 3s 384/1194 [========>.....................] - ETA: 3s 416/1194 [=========>....................] - ETA: 3s 448/1194 [==========>...................] - ETA: 3s 480/1194 [===========>..................] - ETA: 2s 512/1194 [===========>..................] - ETA: 2s 544/1194 [============>.................] - ETA: 2s 576/1194 [=============>................] - ETA: 2s 608/1194 [==============>...............] - ETA: 2s 640/1194 [===============>..............] - ETA: 2s 672/1194 [===============>..............] - ETA: 2s 704/1194 [================>.............] - ETA: 2s 736/1194 [=================>............] - ETA: 1s 768/1194 [==================>...........] - ETA: 1s 800/1194 [===================>..........] - ETA: 1s 832/1194 [===================>..........] - ETA: 1s 864/1194 [====================>.........] - ETA: 1s 896/1194 [=====================>........] - ETA: 1s 928/1194 [======================>.......] - ETA: 1s 960/1194 [=======================>......] - ETA: 0s 992/1194 [=======================>......] - ETA: 0s1024/1194 [========================>.....] - ETA: 0s1056/1194 [=========================>....] - ETA: 0s1088/1194 [==========================>...] - ETA: 0s1120/1194 [===========================>..] - ETA: 0s1152/1194 [===========================>..] - ETA: 0s1184/1194 [============================>.] - ETA: 0s1194/1194 [==============================] - 5s 4ms/step
+Evaluation on trainings data: [0.24247876588423647, 0.9371859297480815]
+
+ 32/133 [======>.......................] - ETA: 0s 64/133 [=============>................] - ETA: 0s 96/133 [====================>.........] - ETA: 0s128/133 [===========================>..] - ETA: 0s133/133 [==============================] - 1s 5ms/step
+Evaluation on test data: [0.30748341047674194, 0.9022556390977443]
+
+ 32/133 [======>.......................] - ETA: 0s 64/133 [=============>................] - ETA: 0s 96/133 [====================>.........] - ETA: 0s128/133 [===========================>..] - ETA: 0s133/133 [==============================] - 1s 5ms/step
+0 : reshape_8_input, <keras.engine.input_layer.InputLayer object at 0x7fcc93829cc0>
+1 : reshape_8, <keras.layers.core.Reshape object at 0x7fcc93829c88>
+2 : LSTM_Layer1, <keras.layers.recurrent.LSTM object at 0x7fcc93829cf8>
+3 : LSTM_Layer2, <keras.layers.recurrent.LSTM object at 0x7fcc93829d68>
+4 : LSTM_Layer3, <keras.layers.recurrent.LSTM object at 0x7fcc93825e48>
+5 : Feature_Layer1, <keras.layers.core.Dense object at 0x7fcc9397c518>
+6 : batch_normalization_15, <keras.layers.normalization.BatchNormalization object at 0x7fcc9327cbe0>
+7 : activation_22, <keras.layers.core.Activation object at 0x7fcc93b81f60>
+8 : Feature_Layer2, <keras.layers.core.Dense object at 0x7fcc92ff6668>
+9 : batch_normalization_16, <keras.layers.normalization.BatchNormalization object at 0x7fcc93154d30>
+10 : activation_23, <keras.layers.core.Activation object at 0x7fcc9327cb70>
+11 : Output_Layer, <keras.layers.core.Dense object at 0x7fcc93a362e8>
+12 : Output_Layer__activation__, <keras.layers.core.Activation object at 0x7fcce91af940>

@@ -68,7 +68,7 @@ def create_model(input_shape,
     # Dense layer 2
     if dropout:
         model.add(Dropout(0.2))
-    model.add(Dense(48,
+    model.add(Dense(num_hidden_units,
                     name = 'Feature_Layer2',
                     kernel_initializer=init,
                     bias_initializer='zeros'))
