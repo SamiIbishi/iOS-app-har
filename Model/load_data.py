@@ -39,7 +39,7 @@ def extraxt_sequences_from_data(data, single=False):
 ########### DATA LOADER #################################
 #########################################################
 
-def load_raw_data():
+def load_json_data():
   data = {}
   for exercise in full_exercises:
     exercise_path = './../Exercises/' + exercise
@@ -67,17 +67,25 @@ def pose_to_numpy(json_pose):
 
 
 # return dict: exercise -> np array
-def raw_data_to_numpy(raw_data):
-  data = {}
-  for (excercise, sequences) in raw_data.items():
-    data[excercise] = []
+def json_to_raw_data(json_data):
+  dataset = {}
+  for exercise, sequences in json_data.items():
+    dataset[exercise] = []
     for sequence in sequences:
       seq = []
-      for key in sorted(sequence.keys()):
-        pose = sequence[key]
-        seq.append(pose_to_numpy(pose))
-      data[excercise].append(np.array(seq))
-  return data
+      for image_key in sorted(sequence.keys()):
+        pose = []
+        keypoints = [keypoint for keypoint in sequence[image_key]['keypoints'] if keypoint['part'] in allowed_parts]
+        for keypoint in keypoints:
+          pose.append(keypoint['position']['x'])
+          pose.append(keypoint['position']['y'])
+        if len(pose) != 26 and len(pose) != 0:
+          print("Error: ", len(pose))
+        elif len(pose) == 0:
+          continue
+        seq.append(np.array(pose))
+      dataset[exercise].append(np.array(seq))
+  return dataset
 
 def X_y_split(data):
   return list(zip(*data.items()))[::-1]
@@ -173,9 +181,5 @@ def load_stored_data(dir_path='./stored_data/', num_poses="90"):
   return np.load(full_X_path), np.load(full_y_path)
 
 if __name__ == '__main__':
-  raw_data = load_raw_data()
-  data = raw_data_to_numpy(raw_data)
-  print(data.keys())
-  print(len(data[list(data.keys())[0]]))
-  print(len(data[list(data.keys())[0]][0]))
-  print(len(data[list(data.keys())[0]][0][0]))
+  raw_data = load_json_data()
+  raw_data = json_to_raw_data(raw_data)

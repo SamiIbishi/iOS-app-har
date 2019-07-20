@@ -73,5 +73,6 @@ def augement_dataset(data):
 
 
 if __name__ == '__main__':
-  X, y = load_stored_data()
-  augement_dataset(X)
+  raw_data = json_to_raw_data(load_json_data())
+  for exercise, data in raw_data.items():
+    augement_dataset(data)
