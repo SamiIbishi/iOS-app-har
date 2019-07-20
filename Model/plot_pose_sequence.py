@@ -32,13 +32,31 @@ skelton_lines = [
   ('leftKnee', 'leftAnkle'),
 ]
 
-def plot_trainings_data(trainings_data, label_data, sample=0, sequence_length=90, color = 'g', image_width = 801, image_height = 450):
+def plot_trainings_data(trainings_data, label_data, sample=0, sequence_length=90, color = 'g', 
+                        image_width = 801, image_height = 450, data_augmentation="", range_mean=(450.5,225), range_std=(225.25,112.5)):
+
   listOfKeys = [key  for (key, value) in target_labels.items() if value == label_data[sample]]
 
   plt.title(labels[listOfKeys[0]])
-  plt.xlim((0,image_width))
-  plt.ylim((image_height,0))
 
+  # Set range according the augmentation
+  if data_augmentation == "":
+    xlim_min, xlim_max = (0, image_width) 
+    ylim_min, ylim_max = (image_height, 0)
+  elif data_augmentation == "standardize":
+    temp_x_mean = (450.5 - range_mean[0]) / range_std[0] 
+    temp_y_mean = (225 - range_mean[1]) / range_std[1] 
+    temp_x_std = (range_std[0] / 2) 
+    temp_y_std = (range_std[1] / 2) 
+    xlim_min, xlim_max = (temp_x_mean-temp_x_std, temp_x_mean+temp_x_std) 
+    ylim_min, ylim_max = (temp_y_mean-temp_y_std, temp_y_mean+temp_y_std) 
+  elif data_augmentation == "normalize":
+    xlim_min, xlim_max = (-1,1)
+    ylim_min, ylim_max = (1,-1)
+
+  plt.xlim((xlim_min,xlim_max))
+  plt.ylim((ylim_min,ylim_max))
+  
   for n in range(0, trainings_data.shape[1]-1):
       pose = {
         'nose': (trainings_data[sample][n][0], trainings_data[sample][n][1]),
@@ -64,7 +82,8 @@ def plot_trainings_data(trainings_data, label_data, sample=0, sequence_length=90
             linewidth=.5
       )
 
-def plot_test_data(test_data, predicted_label_data, label_data, sample=0, sequence_length=90, color = 'g', image_width = 801, image_height = 450):
+def plot_test_data(test_data, predicted_label_data, label_data, sample=0, sequence_length=90, color = 'g', 
+                  image_width = 801, image_height = 450, data_augmentation="", range_mean=(450.5,225), range_std=(225.25,112.5)):
   
   listOfKeysLabel = [key  for (key, value) in target_labels.items() if value == label_data[sample]]
   listOfKeysPred = [key  for (key, value) in target_labels.items() if value == predicted_label_data[sample]]
@@ -77,8 +96,24 @@ def plot_test_data(test_data, predicted_label_data, label_data, sample=0, sequen
   # plt.subplot(211)
 
   plt.title('Label: ' + labels[listOfKeysLabel[0]] + ', Model-Prediction: ' + labels[listOfKeysPred[0]], color=eval_color)
-  plt.xlim((0,image_width))
-  plt.ylim((image_height,0))
+  
+  # Set range according the augmentation
+  if data_augmentation == "":
+    xlim_min, xlim_max = (0, image_width) 
+    ylim_min, ylim_max = (image_height, 0)
+  elif data_augmentation == "standardize":
+    temp_x_mean = (450.5 - range_mean[0]) / range_std[0] 
+    temp_y_mean = (225 - range_mean[1]) / range_std[1] 
+    temp_x_std = (range_std[0] / 2) 
+    temp_y_std = (range_std[1] / 2) 
+    xlim_min, xlim_max = (temp_x_mean-temp_x_std, temp_x_mean+temp_x_std) 
+    ylim_min, ylim_max = (temp_y_mean-temp_y_std, temp_y_mean+temp_y_std) 
+  elif data_augmentation == "normalize":
+    xlim_min, xlim_max = (-1,1)
+    ylim_min, ylim_max = (1,-1)
+
+  plt.xlim((xlim_min,xlim_max))
+  plt.ylim((ylim_min,ylim_max))
 
   for n in range(0, test_data.shape[1]-1):
     pose = {

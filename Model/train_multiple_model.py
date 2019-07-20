@@ -37,14 +37,16 @@ import seaborn as sn
 import pandas as pd
 
 # Locale methods and properties
-from auxilary_functions import time_stamp
-from load_data import load_and_store_data, load_stored_data 
 from model import create_compiled_model
 from callbacks import get_callbacks 
-from plot_pose_sequence import plot_trainings_data, plot_test_data
-from plot_confusion_matrix import print_confusion_matrix 
+from auxilary_functions import time_stamp
+from load_data import load_and_store_data, load_stored_data 
+from data_augmentation import normalize_data, standardize_data
 from plot_trainings_history import plot_loss_acc
+from plot_confusion_matrix import print_confusion_matrix 
 from plot_data_distribution import plot_data_distribution
+from plot_pose_sequence import plot_trainings_data, plot_test_data
+
 
 #########################################################
 ########### Load Data ###################################
@@ -152,6 +154,13 @@ logdir = './training_history/logs/' + time_stamp + "/"
 # Create directory which will contain trained models 
 model_directory = "./training_history/saved_models/" + time_stamp + "/"
 
+# Record ressults of multiple model (training)
+record_driectory = "./training_history/saved_models/" + time_stamp + "/result_documentation.txt"
+if not os.path.exists(record_driectory):
+        os.makedirs(record_driectory)
+
+f_results = open("result_documentation.txt","w+") 
+
 #########################################################
 ########### Constants ###################################
 #########################################################
@@ -180,7 +189,6 @@ for (X_train, X_test, y_train, y_test, fps) in list_of_data:
     # Ether class weight or sample weights to overcome the unbalanced data (NOT both, select one)
     class_weights = class_weight.compute_class_weight('balanced', np.unique(y_train_temp_5fps), y_train_temp_5fps)
     #sample_weights = class_weight.compute_sample_weight('balanced', y)
-
 
     # Generate callback list 
     callbacks = get_callbacks(model_directory, logdir + fps, time_stamp)
@@ -222,6 +230,7 @@ for (X_train, X_test, y_train, y_test, fps) in list_of_data:
     print('Evaluation on trainings data' + str(model.evaluate(reshaped_X_train, y_train)))
     print('Evaluation on test data' + str(model.evaluate(reshaped_X_test, y_test)))
 
+    f_results.write("Model: "activity_recognition_model" + fps + "fps.h5", This is line %d\r\n" % (i+1))
     #########################################################
     ########### Converting and storing model ################
     #########################################################

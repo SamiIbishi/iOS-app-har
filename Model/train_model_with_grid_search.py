@@ -37,14 +37,16 @@ import seaborn as sn
 import pandas as pd
 
 # Locale methods and properties
-from auxilary_functions import time_stamp
-from load_data import load_and_store_data, load_stored_data 
 from model import create_compiled_model
 from callbacks import get_callbacks 
-from plot_pose_sequence import plot_trainings_data, plot_test_data
-from plot_confusion_matrix import print_confusion_matrix 
+from auxilary_functions import time_stamp
+from load_data import load_and_store_data, load_stored_data 
+from data_augmentation import normalize_data, standardize_data
 from plot_trainings_history import plot_loss_acc
+from plot_confusion_matrix import print_confusion_matrix 
 from plot_data_distribution import plot_data_distribution
+from plot_pose_sequence import plot_trainings_data, plot_test_data
+
 
 #########################################################
 ########### Load Data ###################################
@@ -69,7 +71,11 @@ fps = '90'
 # Load data from .npy files 
 # X = [samples, timesteps, features]
 # y = [samples, labels]
-X, y = load_stored_data(dir_path=data_path, num_poses=fps)
+X_raw, y_raw = load_stored_data(dir_path=data_path, num_poses=fps)
+
+# Augment data
+X, y = standardize_data(X_raw, y_raw)
+#X, y = normalize_data(X_raw, y_raw)
 
 # Split dataset into train and test set (and shuffle them)
 X_train, X_test, y_train_temp, y_test_temp = train_test_split(X, y, test_size = 0.1, random_state = 42)
