@@ -39,6 +39,59 @@ def extraxt_sequences_from_data(data, single=False):
 ########### DATA LOADER #################################
 #########################################################
 
+def load_json_data():
+  data = {}
+  for exercise in full_exercises:
+    exercise_path = './../Exercises/' + exercise
+    paths = [x[0] for x in os.walk(exercise_path) if exercise_path != x[0] and not 'Videos' in x[0]]
+    if len(paths) > 0:
+      data[exercise] = []
+    for video_path in paths:
+      keypoints_path = video_path + '/keypoints_single.json'
+      if os.path.isfile(keypoints_path) is False:
+        continue
+      with open(keypoints_path, 'r') as f:
+        sequence = json.load(f, object_pairs_hook=OrderedDict)
+        data[exercise].append(sequence)
+  return data
+
+def pose_to_numpy(json_pose):
+  pose = []
+  keypoints = json_pose['keypoints']
+  for keypoint in keypoints:
+    if keypoint['part'] in allowed_parts:
+      pose += [keypoint['position']['x'], keypoint['position']['y']]
+    else:
+      pose += [-1, -1]
+  return np.array(pose)
+
+
+# return dict: exercise -> np array
+def json_to_raw_data(json_data):
+  dataset = {}
+  for exercise, sequences in json_data.items():
+    dataset[exercise] = []
+    for sequence in sequences:
+      seq = []
+      for image_key in sorted(sequence.keys()):
+        pose = []
+        keypoints = [keypoint for keypoint in sequence[image_key]['keypoints'] if keypoint['part'] in allowed_parts]
+        for keypoint in keypoints:
+          pose.append(keypoint['position']['x'])
+          pose.append(keypoint['position']['y'])
+        if len(pose) != 26 and len(pose) != 0:
+          print("Error: ", len(pose))
+        elif len(pose) == 0:
+          continue
+        seq.append(np.array(pose))
+      dataset[exercise].append(np.array(seq))
+  return dataset
+
+def X_y_split(data):
+  return list(zip(*data.items()))[::-1]
+
+
+
 def load_and_store_data(num_poses=90, sample_equal_dist=True, store_data=True, path = './', X_filename_prefix='X_data_90p', y_filename_prefix='y_data_90p'):
   list_of_trainings_data = []
   list_of_labels = []
@@ -124,5 +177,8 @@ def load_and_store_data(num_poses=90, sample_equal_dist=True, store_data=True, p
 def load_stored_data(dir_path='./stored_data/6_classes', num_poses="90"):
   full_X_path = dir_path + 'X_data_' + num_poses + 'p.npy'
   full_y_path = dir_path + 'y_data_' + num_poses + 'p.npy'
-    
   return np.load(full_X_path), np.load(full_y_path)
+
+if __name__ == '__main__':
+  raw_data = load_json_data()
+  raw_data = json_to_raw_data(raw_data)
