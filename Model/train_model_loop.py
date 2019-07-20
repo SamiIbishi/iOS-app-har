@@ -194,8 +194,8 @@ for fps in fps_array:
 
     # Convert trained model into CoreML
     # coreml_model = coremltools.converters.keras.convert(saved_model, 
-                                                        class_labels=LABELS, 
-                                                        input_names=['pose'])
+                                                        # class_labels=LABELS, 
+                                                        # input_names=['pose'])
 
     # Store CoreML model 
     # coreml_model.save(model_directory + "/activity_recognition_" + fps + "fps_model_" + str_test_acc + "_test_acc.mlmodel")
