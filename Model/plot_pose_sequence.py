@@ -31,6 +31,40 @@ skelton_lines = [
   ('leftKnee', 'leftHip'),
   ('leftKnee', 'leftAnkle'),
 ]
+skeleton_map = {
+  'nose': 0,
+  'leftShoulder': 1,
+  'rightShoulder': 2,
+  'leftElbow': 3,
+  'rightElbow': 4,
+  'leftWrist': 5,
+  'rightWrist': 6,
+  'leftHip': 7,
+  'rightHip': 8,
+  'leftKnee': 9,
+  'rightKnee': 10,
+  'leftAnkle': 11,
+  'rightAnkle': 12,
+}
+
+def plot_numpy_pose(pose, image_width=801, image_height=801, show=True, color='b'):
+  pose = list(pose)
+  x, y = pose[::2], pose[1::2]
+  plt.xlim((0,image_width))
+  plt.ylim((image_height,0))
+  for left, right in skelton_lines:
+    plt.plot([x[skeleton_map[left]], x[skeleton_map[right]]],
+             [y[skeleton_map[left]], y[skeleton_map[right]]],
+             linewidth=.5, color=color)
+  if show is True:
+    plt.show()
+
+def plot_numpy_sequence(sequence, image_width=801, image_height=801, show=True, skip=0, color='b'):
+  for pose in sequence[::skip + 1]:
+    plot_numpy_pose(pose, image_width=image_height, image_height=image_height, show=False, color=color)
+  if show is True:
+    plt.show()
+
 
 def plot_trainings_data(trainings_data, label_data, sample=0, sequence_length=90, color = 'g', image_width = 801, image_height = 450):
   listOfKeys = [key  for (key, value) in target_labels.items() if value == label_data[sample]]

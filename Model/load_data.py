@@ -39,6 +39,51 @@ def extraxt_sequences_from_data(data, single=False):
 ########### DATA LOADER #################################
 #########################################################
 
+def load_raw_data():
+  data = {}
+  for exercise in full_exercises:
+    exercise_path = './../Exercises/' + exercise
+    paths = [x[0] for x in os.walk(exercise_path) if exercise_path != x[0] and not 'Videos' in x[0]]
+    if len(paths) > 0:
+      data[exercise] = []
+    for video_path in paths:
+      keypoints_path = video_path + '/keypoints_single.json'
+      if os.path.isfile(keypoints_path) is False:
+        continue
+      with open(keypoints_path, 'r') as f:
+        sequence = json.load(f, object_pairs_hook=OrderedDict)
+        data[exercise].append(sequence)
+  return data
+
+def pose_to_numpy(json_pose):
+  pose = []
+  keypoints = json_pose['keypoints']
+  for keypoint in keypoints:
+    if keypoint['part'] in allowed_parts:
+      pose += [keypoint['position']['x'], keypoint['position']['y']]
+    else:
+      pose += [-1, -1]
+  return np.array(pose)
+
+
+# return dict: exercise -> np array
+def raw_data_to_numpy(raw_data):
+  data = {}
+  for (excercise, sequences) in raw_data.items():
+    data[excercise] = []
+    for sequence in sequences:
+      seq = []
+      for key in sorted(sequence.keys()):
+        pose = sequence[key]
+        seq.append(pose_to_numpy(pose))
+      data[excercise].append(np.array(seq))
+  return data
+
+def X_y_split(data):
+  return list(zip(*data.items()))[::-1]
+
+
+
 def load_and_store_data(num_poses=90, sample_equal_dist=True, store_data=True, path = './', X_filename_prefix='X_data_90p', y_filename_prefix='y_data_90p'):
   list_of_trainings_data = []
   list_of_labels = []
@@ -126,4 +171,11 @@ def load_stored_data(dir_path='./stored_data/', num_poses="90"):
   full_y_path = dir_path + 'y_data_' + num_poses + 'p.npy'
     
   return np.load(full_X_path), np.load(full_y_path)
-  
+
+if __name__ == '__main__':
+  raw_data = load_raw_data()
+  data = raw_data_to_numpy(raw_data)
+  print(data.keys())
+  print(len(data[list(data.keys())[0]]))
+  print(len(data[list(data.keys())[0]][0]))
+  print(len(data[list(data.keys())[0]][0][0]))
