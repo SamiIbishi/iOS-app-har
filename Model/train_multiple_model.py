@@ -56,16 +56,14 @@ from plot_pose_sequence import plot_trainings_data, plot_test_data
 LABELS = [    
     "STAND_BY",
     "LEFT_DIVE",
-    "LONG_LEFT_DIVE",
     "RIGHT_DIVE",
-    "LONG_RIGHT_DIVE",
     "HIGH_CATCH",
 ]
 
 num_classes = len(LABELS)
 
 # Path to stored keypoints
-data_path = "./stored_data/"
+data_path = "./stored_data/4_classes/"
 
 # Framrates/Poses-per-sequence: '5' / '10' / '15' / '30' / '45' / '60' / '75' / '90'
 # Load data from .npy files 

@@ -4,7 +4,7 @@ import os
 import tensorflow as tf
 from keras.callbacks import TensorBoard, ReduceLROnPlateau, CSVLogger
 
-def get_callbacks(model_directory, logdir, time_stamp):
+def get_callbacks(model_directory, logdir, time_stamp, fps):
 
     ## Check whether the target directoy exist and 
     if not os.path.exists(logdir):
@@ -19,6 +19,6 @@ def get_callbacks(model_directory, logdir, time_stamp):
 
     ## Create callback which stores model-weights checkpoints
     reduce_lr = ReduceLROnPlateau(monitor='val_acc', factor=0.2, patience=10, min_lr=0.001)
-    csv_logger = CSVLogger(model_directory + '/training.log')
+    csv_logger = CSVLogger(model_directory + '/training_' + fps + 'fps_model.log')
 
     return [tensorboard, reduce_lr, csv_logger]

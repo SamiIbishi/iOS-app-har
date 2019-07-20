@@ -55,17 +55,15 @@ from plot_pose_sequence import plot_trainings_data, plot_test_data
 LABELS = [    
     "STAND_BY",
     "LEFT_DIVE",
-    "LONG_LEFT_DIVE",
     "RIGHT_DIVE",
-    "LONG_RIGHT_DIVE",
     "HIGH_CATCH",
 ]
 
 # Path to stored keypoints
-data_path = "./stored_data/"
+data_path = "./stored_data/4_classes/"
 
 # Framrates/Poses-per-sequence: '5' / '10' / '15' / '30' / '45' / '60' / '75' / '90'
-fps = '90'
+fps = '60'
 
 # Load data from .npy files 
 # X = [samples, timesteps, features]
@@ -73,15 +71,18 @@ fps = '90'
 X_raw, y_raw = load_stored_data(dir_path=data_path, num_poses=fps)
 
 # Augment data
-X, y = standardize_data(X_raw, y_raw)
+X, y, range_mean, range_std, data_augmentation = standardize_data(X_raw, y_raw)
 #X, y = normalize_data(X_raw, y_raw)
 
 # Split dataset into train and test set (and shuffle them)
 X_train, X_test, y_train_temp, y_test_temp = train_test_split(X, y, test_size = 0.1, random_state = 42)
 
+# Classes
+num_classes = len(LABELS)
+
 # Get one hot vector from labels
-y_train = to_categorical(y_train_temp, num_classes=6)
-y_test = to_categorical(y_test_temp, num_classes=6)
+y_train = to_categorical(y_train_temp, num_classes=num_classes)
+y_test = to_categorical(y_test_temp, num_classes=num_classes)
 
 # Plot some debugging information about the data
 print("_______________________________________")
@@ -109,9 +110,8 @@ n_features = X_train.shape[2] # n input parameters per timestep
 
 # LSTM Neural Network's internal structure
 input_shape = (n_timesteps, n_features)
-num_classes = len(LABELS)
-num_mem_units = 96
-num_hidden_units = 96
+num_mem_units = 128
+num_hidden_units = 128
 
 # Training - Hyperparameter  
 learning_rate = [0.001, 0.0005, 0.0001]
@@ -119,8 +119,8 @@ init = ['glorot_uniform', 'uniform']
 optim = [optimizers.RMSprop(lr=learning_rate[0], decay=0.5), 
               optimizers.Adam(lr=learning_rate[0], decay=0.5),
               optimizers.Nadam(lr=learning_rate[0])]
-num_epochs = 50
-batch_size = 24
+num_epochs = 32
+batch_size = 128
 dropout = [True, False]
 
 # Ether class weight or sample weights to overcome the unbalanced data (NOT both, select one)
@@ -135,10 +135,10 @@ class_weights = class_weight.compute_class_weight('balanced', np.unique(y_train_
 time_stamp = time_stamp()
 
 # Tensorboard
-logdir = './training_history/logs/' + time_stamp
+logdir = './training_history/logs/model_selection/' + fps + 'fps_model/'
 
 # Create directory which will contain trained models 
-model_directory = "./training_history/saved_models/" + time_stamp
+model_directory = './training_history/saved_models/model_selection/' + fps + 'fps_model/'
 
 # Generate callback list 
 callbacks = get_callbacks(model_directory, logdir, time_stamp)
@@ -152,8 +152,8 @@ model = create_compiled_model(input_shape=input_shape,
                                 num_classes=num_classes,
                                 num_mem_units=num_mem_units, 
                                 num_hidden_units=num_hidden_units,  
-                                dropout=dropout[0],
                                 init=init[0],
+                                dropout=dropout[0],
                                 optimizer=optim[0],
                                 loss=losses.categorical_crossentropy,)
 
@@ -177,15 +177,17 @@ history = model.fit(reshaped_X_train,
 
 # Plot evaluation results
 print('Used metrics: ' + str(model.metrics_names))
-print('Evaluation on trainings data' + str(model.evaluate(reshaped_X_train, y_train)))
-print('Evaluation on test data' + str(model.evaluate(reshaped_X_test, y_test)))
+print('Evaluation on trainings data: ' + str(model.evaluate(reshaped_X_train, y_train)))
+print('Evaluation on test data: ' + str(model.evaluate(reshaped_X_test, y_test)))
+
+str_test_acc = str(model.evaluate(reshaped_X_test, y_test)[1])
 
 #########################################################
 ########### Converting and storing model ################
 #########################################################
 
 # Save trained model
-saved_model = model_directory + "/activity_recognition_model" + fps + "fps.h5"
+saved_model = model_directory + "/activity_recognition_" + fps + "fps_model_" + str_test_acc + "_test_acc.h5"
 model.save(saved_model)
 
 # Convert trained model into CoreML
@@ -194,4 +196,4 @@ coreml_model = coremltools.converters.keras.convert(saved_model,
                                                     input_names=['pose'])
 
 # Store CoreML model 
-coreml_model.save(model_directory + "/activity_recognition_model" + fps + "fps.mlmodel")
+coreml_model.save(model_directory + "/activity_recognition_" + fps + "fps_model_" + str_test_acc + "_test_acc.mlmodel")
