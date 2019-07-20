@@ -33,13 +33,13 @@ allowed_parts = [
 # Paths 
 full_basePath = '../Exercises_Data/'
 full_exercises = [
-  # '00_stand_by',
-  # '01_short_left_dives',
-  # '02_left_dives',
-  # '03_long_left_dives',
-  # '04_short_right_dives',
-  # '05_right_dives',
-  # '06_long_right_dives',
+  '00_stand_by',
+  '01_short_left_dives',
+  '02_left_dives',
+  '03_long_left_dives',
+  '04_short_right_dives',
+  '05_right_dives',
+  '06_long_right_dives',
   #'07_low_catch',
   #'08_middle_catch',
   '09_high_catch',
