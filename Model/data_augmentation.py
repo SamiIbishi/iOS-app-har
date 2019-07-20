@@ -1,13 +1,7 @@
 #!/usr/bin/env python
 
 import os
-import json
 import numpy as np
-from datetime import datetime
-from constants import allowed_parts, full_basePath, full_exercises, target_labels
-from collections import OrderedDict
-from auxilary_functions import get_label_vector_by_id
-from load_data import load_stored_data
 
 #########################################################
 ########### AUGMENT DATA ##############################

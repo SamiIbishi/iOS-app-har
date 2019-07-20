@@ -108,8 +108,8 @@ def load_and_store_data(num_poses=90, sample_equal_dist=True, store_data=True, p
 
   print(X_data.shape)
   if store_data:
-    np.save(X_filename_prefix + '.npy', X_data)
-    np.save(y_filename_prefix + '.npy', y_data)
+    np.save('./stored_data/4_classes/' + X_filename_prefix + '.npy', X_data)
+    np.save('./stored_data/4_classes/' + y_filename_prefix + '.npy', y_data)
 
   # Convert list of trainings data to numpy array 
   #trainings_data = np.asarray(full_padded_sequences, dtype=float)
@@ -119,11 +119,10 @@ def load_and_store_data(num_poses=90, sample_equal_dist=True, store_data=True, p
   #label_data = np.asarray(list_of_labels)
   #print('Label data: ' + str(label_data.shape))
 
-  #return X_data, y_data
+  return X_data, y_data
 
-def load_stored_data(dir_path='./stored_data/', num_poses="90"):
+def load_stored_data(dir_path='./stored_data/6_classes', num_poses="90"):
   full_X_path = dir_path + 'X_data_' + num_poses + 'p.npy'
   full_y_path = dir_path + 'y_data_' + num_poses + 'p.npy'
     
   return np.load(full_X_path), np.load(full_y_path)
-  
