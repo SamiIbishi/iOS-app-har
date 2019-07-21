@@ -88,7 +88,12 @@ def json_to_raw_data(json_data):
   return dataset
 
 def X_y_split(data):
-  return list(zip(*data.items()))[::-1]
+  X = []
+  y = []
+  for y, sequences in data.items():
+    X += sequences
+    y += []
+
 
 
 

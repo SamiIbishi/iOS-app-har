@@ -69,9 +69,12 @@ def augment_sequence(sequence):
   # plot_numpy_sequence(moved, color='r', skip=2)
   return moved
 
+
+
+
 class BatchGenerator():
-  def __init__(self, data):
-    self.data = data
+  def __init__(self):
+    self.data = json_to_raw_data(load_json_data())
   
   exercise_mapping = {
     'left': ['01_short_left_dives', '02_left_dives', '03_long_left_dives'],
@@ -104,17 +107,27 @@ class BatchGenerator():
       y += [self.class_mapping[exercise] for _ in range(len(exercise_batch))]
       X += exercise_batch
     return X, np.array(y)
-
+  
+  def test_set(self):
+    X = []
+    y = []
+    for exercise, sequences in self.data.items():
+      X += sequences
+      y += [get_label_vector_by_id(exercise.split('_')[0]) for _ in range(len(sequences))]
+      return X, y
 
   
     
 
 
 if __name__ == '__main__':
-  raw_data = json_to_raw_data(load_json_data())
-  bg = BatchGenerator(raw_data)
-  X, y = bg.train_set()
+  
+  bg = BatchGenerator()
+  X, y = bg.test_set()
+  # X, y = bg.train_set()
   print(len(X))
   print(len(y))
+  print(y[0])
+  print(y[500])
   # bg.get_batch(list(raw_data.keys())[0], size=1000)
   

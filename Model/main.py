@@ -1,3 +1,4 @@
-from load_data import *
+from dataset_generator import BatchGenerator
+from 
 
-load_and_store_data()
+X, y = BatchGenerator
