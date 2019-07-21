@@ -187,3 +187,43 @@ def plot_exach_class_of_training_data(trainings_data, label_data, sequence_lengt
           color=color,
           linewidth=.5
       )
+
+
+def plot_store_trainings_data(trainings_data, label_data, sample=0, sequence_length=90, color = 'g', image_width = 801, image_height = 450):
+
+  listOfKeys = [key  for (key, value) in target_labels.items() if value == label_data[sample]]
+
+  plt.title(labels[listOfKeys[0]])
+
+  xlim_min, xlim_max = (0, image_width) 
+  ylim_min, ylim_max = (image_height, 0)
+
+  plt.xlim((xlim_min,xlim_max))
+  plt.ylim((ylim_min,ylim_max))
+
+  for n in range(0, trainings_data.shape[1]-1):
+    pose = {
+      'nose': (trainings_data[sample][n][0], trainings_data[sample][n][1]),
+      'leftShoulder': (trainings_data[sample][n][2], trainings_data[sample][n][3]),
+      'rightShoulder': (trainings_data[sample][n][4], trainings_data[sample][n][5]),
+      'leftElbow': (trainings_data[sample][n][6], trainings_data[sample][n][7]),
+      'rightElbow': (trainings_data[sample][n][8], trainings_data[sample][n][9]),
+      'leftWrist': (trainings_data[sample][n][10], trainings_data[sample][n][11]),
+      'rightWrist': (trainings_data[sample][n][12], trainings_data[sample][n][13]),
+      'leftHip': (trainings_data[sample][n][14], trainings_data[sample][n][15]),
+      'rightHip': (trainings_data[sample][n][16], trainings_data[sample][n][17]),
+      'leftKnee': (trainings_data[sample][n][18], trainings_data[sample][n][19]),
+      'rightKnee': (trainings_data[sample][n][20], trainings_data[sample][n][21]),
+      'leftAnkle': (trainings_data[sample][n][22], trainings_data[sample][n][23]),
+      'rightAnkle': (trainings_data[sample][n][24], trainings_data[sample][n][25]),
+    }
+
+    for (left, right) in skelton_lines:
+      plt.plot(
+          [pose[left][0], pose[right][0]],
+          [pose[left][1], pose[right][1]],
+          color=color,
+          linewidth=.5
+    )
+
+    plt.savefig(labels[listOfKeys[0]].replace(" ", "_") + '_%#05d.jpg' % (n))
