@@ -96,7 +96,7 @@ class BatchGenerator():
     return batch
 
   # X, y
-  def train_set(self, size_per_class=10):
+  def train_set(self, size_per_class=10000):
     X = []
     y = []
     for exercise in self.exercise_mapping.keys():
