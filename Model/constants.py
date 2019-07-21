@@ -40,10 +40,10 @@ full_exercises = [
   '04_short_right_dives',
   '05_right_dives',
   '06_long_right_dives',
-  #'07_low_catch',
-  #'08_middle_catch',
   '09_high_catch',
 ]
+#'07_low_catch',
+#'08_middle_catch',
 
 # Label-IDs
 STAND_BY_ID = '00'
@@ -56,6 +56,10 @@ LONG_RIGHT_DIVES_ID = '06'
 LOW_CATCH_ID = '07'
 MIDDLE_ID = '08'
 HIGH_ID = '09'
+
+exercise_label_map = {
+
+}
 
 target_labels = {
   STAND_BY_ID: 0,

@@ -193,12 +193,12 @@ for fps in fps_array:
     model.save(saved_model)
 
     # Convert trained model into CoreML
-    coreml_model = coremltools.converters.keras.convert(saved_model, 
-                                                        class_labels=LABELS, 
-                                                        input_names=['pose'])
+    # coreml_model = coremltools.converters.keras.convert(saved_model, 
+                                                        # class_labels=LABELS, 
+                                                        # input_names=['pose'])
 
     # Store CoreML model 
-    coreml_model.save(model_directory + "/activity_recognition_" + fps + "fps_model_" + str_test_acc + "_test_acc.mlmodel")
+    # coreml_model.save(model_directory + "/activity_recognition_" + fps + "fps_model_" + str_test_acc + "_test_acc.mlmodel")
 
     # Delete elemental objects (just to be sure that those are loaded new for each iteration)
-    del model, coreml_model, X_raw, y_raw
+    del  X_raw, y_raw # model, coreml_model,
