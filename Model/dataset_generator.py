@@ -3,6 +3,7 @@ import math
 from load_data import *
 from constants import *
 from plot_pose_sequence import *
+from auxilary_functions import get_label_vector_by_id
 
 random.seed(1)
 
@@ -58,21 +59,62 @@ def center_sequence():
   pass # TODO
 
 
-def augement_dataset(data):
-  for sequence in data:
-    sequence.shape
-    s2 = move_keypoins_of_sequence(sequence)
-    scaled = scale_sequence(s2)
-    moved = move_sequence(scaled)
-    plot_numpy_sequence(sequence, show=False, skip=2)
-    plot_numpy_sequence(s2, color='g', show=False, skip=2)
-    plot_numpy_sequence(scaled, color='r', show=False, skip=2)
-    plot_numpy_sequence(moved, color='r', skip=2)
+def augment_sequence(sequence):
+  s2 = move_keypoins_of_sequence(sequence)
+  scaled = scale_sequence(s2)
+  moved = move_sequence(scaled)
+  # plot_numpy_sequence(sequence, show=False, skip=2)
+  # plot_numpy_sequence(s2, color='g', show=False, skip=2)
+  # plot_numpy_sequence(scaled, color='r', show=False, skip=2)
+  # plot_numpy_sequence(moved, color='r', skip=2)
+  return moved
+
+class BatchGenerator():
+  def __init__(self, data):
+    self.data = data
+  
+  exercise_mapping = {
+    'left': ['01_short_left_dives', '02_left_dives', '03_long_left_dives'],
+    'right': ['04_short_right_dives', '05_right_dives', '06_long_right_dives'],
+    'stand_by': ['00_stand_by'],
+    'high_catch': ['09_high_catch']
+  }
+  class_mapping = {
+    'stand_by': 0,
+    'left': 1,
+    'right': 2,
+    'high_catch': 3
+  }
+  
+  # left, right, high_catch, stand_by
+  def get_batch(self, exercise, size=1000):
+    sequences = []
+    for ex in self.exercise_mapping[exercise]:
+      sequences += (self.data[ex])
+    # todo radomize
+    batch = [augment_sequence(sequences[i % len(sequences)]) for i in range(size)]
+    return batch
+
+  # X, y
+  def train_set(self, size_per_class=10):
+    X = []
+    y = []
+    for exercise in self.exercise_mapping.keys():
+      exercise_batch = self.get_batch(exercise, size=size_per_class)
+      y += [self.class_mapping[exercise] for _ in range(len(exercise_batch))]
+      X += exercise_batch
+    return X, np.array(y)
+
 
   
+    
 
 
 if __name__ == '__main__':
   raw_data = json_to_raw_data(load_json_data())
-  for exercise, data in raw_data.items():
-    augement_dataset(data)
+  bg = BatchGenerator(raw_data)
+  X, y = bg.train_set()
+  print(len(X))
+  print(len(y))
+  # bg.get_batch(list(raw_data.keys())[0], size=1000)
+  

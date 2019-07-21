@@ -42,7 +42,7 @@ def extraxt_sequences_from_data(data, single=False):
 def load_json_data():
   data = {}
   for exercise in full_exercises:
-    exercise_path = './../Exercises/' + exercise
+    exercise_path = './../Exercises_Data/' + exercise
     paths = [x[0] for x in os.walk(exercise_path) if exercise_path != x[0] and not 'Videos' in x[0]]
     if len(paths) > 0:
       data[exercise] = []
